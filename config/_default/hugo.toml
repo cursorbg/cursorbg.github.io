@@ -1,7 +1,7 @@
 # -- Site Configuration --
 
 # URL to the root of your website.
-baseURL = "https://cursor.bg/"
+baseURL = "http://cursor.bg/"
 
 # Site's language code
 languageCode = 'bg-bg'
