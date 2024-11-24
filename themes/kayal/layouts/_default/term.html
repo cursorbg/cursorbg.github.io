@@ -1,0 +1,8 @@
+{{ define "main" }}
+  {{ $groupByYear := .Params.groupByYear | default (.Site.Params.term.groupByYear | default false) }}
+  {{ $cardView := .Params.cardView | default (.Site.Params.term.cardView | default false) }}
+  {{ $showBreadcrumbs := .Params.showBreadcrumbs | default (.Site.Params.term.showBreadcrumbs | default false) }}
+  {{ $showRSS := .Params.showRSS | default (.Site.Params.term.showRSS | default false) }}
+  {{ $args := dict "groupByYear" $groupByYear "cardView" $cardView "showBreadcrumbs" $showBreadcrumbs "showRSS" $showRSS }}
+  {{ partial "list/main.html" (dict "context" . "args" $args) }}
+{{ end }}

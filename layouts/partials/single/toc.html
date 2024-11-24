@@ -1,0 +1,15 @@
+{{ if .Params.showToC | default (.Site.Params.article.showToC | default true) }}
+{{ $openToC := .Params.openToC | default (.Site.Params.article.openToC | default false) }}
+{{ if (in .TableOfContents "<ul") }}
+  <div class="toc">
+    <details {{ if $openToC }}open{{ end }}>
+      <summary accesskey="c" title="(Alt+C)">
+        Съдържание
+      </summary>
+      <div class="toc-innr">
+        {{ .TableOfContents | emojify }}
+      </div>
+    </details>
+  </div>
+  {{ end }}
+{{ end }}
