@@ -7,7 +7,7 @@
 # logo = "/imgs/logo.png"
 logo = "cursorbg.png"
 # Site description.
-description = "A Hugo Theme"
+description = "cursor.bg – мястото, където се срещат страстта към технологиите и желанието за знание!"
 # [Optional] Copyright owner name.
 copyright = "cursor.bg"
 # Whether to optimize images per view port.
