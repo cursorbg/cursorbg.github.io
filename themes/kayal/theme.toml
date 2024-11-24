@@ -1,0 +1,20 @@
+name = 'Kayal'
+license = 'MIT'
+licenselink = 'https://github.com/mnjm/kayal/LICENSE'
+description = 'A minimal, lightweight with markdown-ish aesthetics for personal blogsites.'
+
+# The home page of the theme, where the source can be found
+homepage = 'https://github.com/mnjm/kayal'
+
+# If you have a running demo of the theme
+demosite = 'https://mnjm.github.io/kayal'
+
+# Taxonomy terms
+tags = ['blog', 'minimal', 'responsive', 'light', 'dark', 'clean', 'warm']
+features = ['dark mode', 'emoji', 'blog', 'table of contents', 'code copy', 'analytics', 'markdown-ish ui']
+
+# If porting an existing theme
+[original]
+  author = 'Manjunath Mohan'
+  homepage = 'mnjm.github.io'
+  repo = 'https://github.com/mnjm/kayal'

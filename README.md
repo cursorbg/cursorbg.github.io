@@ -1,1 +1,2 @@
-# cursorbg.github.io
+## cursor.bg blog site
+

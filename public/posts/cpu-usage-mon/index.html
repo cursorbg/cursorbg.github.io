@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="bg-bg" dir="ltr">
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="content-language" content="bg-bg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  
+  
+  <title>Как да получавате известия при високо натоварване на процесора? &middot; cursor.bg</title>
+  <meta name="title" content="Как да получавате известия при високо натоварване на процесора? &middot; cursor.bg" />
+  
+
+  
+  
+  <meta name="description" content="Колко често се е случвало компютъра да Ви се забавя ужасно?" />
+  
+  <meta name="keywords" content="процесор, натоварване, powershell, task-scheduler, " />
+  <link rel="canonical" href="https://cursor.bg/posts/cpu-usage-mon/" />
+
+  
+
+
+
+  
+    
+  
+
+  
+    
+  
+
+  
+
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.570149668ce7679a02125b8827e713870caeaf6d03e7818bf2c5f025567cd374cb4257e70a478198e81193e9610b2fd66b5e8c00ecf524e6ea3c34bfdb617709.css" integrity="sha512-VwFJZoznZ5oCEluIJ&#43;cThwyur20D54GL8sXwJVZ803TLQlfnCkeBmOgRk&#43;lhCy/Wa16MAOz1JObqPDS/22F3CQ==" />
+
+
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+    
+        
+        <script defer type="text/javascript" src="/js/theme.min.b12ffe233a345d2a545ca355b5aa71c906bbebbee2ea801f46de9e7af2b59da08cc4ffe002b2f302ce00f00eddca05abd8f71c16335f949d96e42eb5971c0235.js" integrity="sha512-sS/&#43;Izo0XSpUXKNVtapxyQa7677i6oAfRt6eevK1naCMxP/gArLzAs4A8A7dygWr2PccFjNflJ2W5C61lxwCNQ=="> </script>
+      
+    
+  
+
+  
+    
+        
+        <script defer type="text/javascript" src="/js/codecopy.min.6319d0ad3eae498a0591b4ec1d52cc0156f5c3cb95390089d7d0ac7fe6dfb183161c14f935d25b5ad896840e2a9d6a23f555a7976954d0a263c24a11272aa747.js" integrity="sha512-YxnQrT6uSYoFkbTsHVLMAVb1w8uVOQCJ19Csf&#43;bfsYMWHBT5NdJbWtiWhA4qnWoj9VWnl2lU0KJjwkoRJyqnRw=="> </script>
+      
+    
+  
+
+  
+    
+        
+        <script defer type="text/javascript" src="/js/search.min.bb866b924569dd33a507ff4631eae853f6b6902fe0dbfe5e8aad50e1ccd528db3a01aaf098948dd4516d6bbd2dab8c6716b4b31809eb28ad8ce47d4801a0f0c3.js" integrity="sha512-u4ZrkkVp3TOlB/9GMeroU/a2kC/g2/5eiq1Q4czVKNs6AarwmJSN1FFta70tq4xnFrSzGAnrKK2M5H1IAaDwww=="> </script>
+      
+    
+  
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+
+  <meta property="og:url" content="https://cursor.bg/posts/cpu-usage-mon/">
+  <meta property="og:site_name" content="cursor.bg">
+  <meta property="og:title" content="Как да получавате известия при високо натоварване на процесора?">
+  <meta property="og:description" content="Колко често се е случвало компютъра да Ви се забавя ужасно?">
+  <meta property="og:locale" content="bg_bg">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2024-10-28T16:11:31+02:00">
+    <meta property="article:modified_time" content="2024-10-28T16:11:31+02:00">
+    <meta property="article:tag" content="Процесор">
+    <meta property="article:tag" content="Натоварване">
+    <meta property="article:tag" content="Powershell">
+    <meta property="article:tag" content="Task-Scheduler">
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Как да получавате известия при високо натоварване на процесора?">
+  <meta name="twitter:description" content="Колко често се е случвало компютъра да Ви се забавя ужасно?">
+
+  
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script
+      defer
+      type="text/javascript"
+      src="/lib/fuse/fuse.min.1ab2783fdcab6ba75fb69e4ed1e68a14a4b8721d45627d7147f5421d020c24ed4b36a70a8639009001131d8a04f3515f87706308931603f0194983f9db58f114.js"
+      integrity="sha512-GrJ4P9yra6dftp5O0eaKFKS4ch1FYn1xR/VCHQIMJO1LNqcKhjkAkAETHYoE81Ffh3BjCJMWA/AZSYP521jxFA=="
+    ></script>
+  
+
+
+
+  
+  
+  
+
+  
+  
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+    <link rel="preload" href="https://cursor.bg/fonts/Ubuntu-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  
+
+  
+
+  
+
+</head>
+
+  <body>
+    <script>
+      const siteTheme = "auto";
+      let savedTheme = localStorage.getItem('theme') || siteTheme;
+      if (savedTheme == 'auto') {
+        if ( window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ) {
+          savedTheme = 'dark';
+        }
+      }
+      if (savedTheme === "dark") {
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    </script>
+    <div class="content">
+      <header>
+    
+    <a class="title" href="/">
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        src="/cursorbg_hu7059648859393039915.png"
+      
+    
+      alt="Site Logo" />
+  
+
+
+
+
+    </a>
+    
+    <div class="header-cntr">
+    <a class="title" href="/">
+    <span>cursor.bg</span>
+    </a>
+  <div class="menu">
+  <nav id="main-menu" class="mm-normal">
+    <ul>
+    <li> <button id="mob-x-icon" class="menu-btn" arial-label="x-icon"> 
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+
+ </button> </li>
+    
+      <li><a href="/posts/" aria-label="posts">
+      Постове</li></a>
+    
+      <li><a href="/tags/" aria-label="tags">
+      Тагове</li></a>
+    
+      <li><a href="/aboutus/" aria-label="aboutus">
+      За нас</li></a>
+    
+    </ul>
+  </nav>
+    <div class="side-menu">
+    
+<button id="search-open" class="menu-btn" aria-label="Search button">
+  
+
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+
+
+</button>
+
+<div id="search-container" data-url="https://cursor.bg/">
+  <div class="search">
+    <div class="panel">
+      <form>
+        
+
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+
+
+        <input type="search" id="search-query" placeholder="Search" tabindex=0 autocomplete="off"/>
+        <button id="search-close" title="Cancel (ESC)">
+          
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+
+
+        </button>
+      </form>
+    </div>
+    <ul id="search-results">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+    
+    <button id="theme-switcher" class="menu-btn" aria-label="Theme switcher">
+      <div id="moon">
+      
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+
+
+      </div>
+      <div id="sun">
+      
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+
+
+      </div>
+    </button>
+    
+    </div>
+    <button id="mob-hb-icon" class="menu-btn" aria-label="Hamburger icon">
+      
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+
+
+    </button>
+  </div>
+  <script>
+  (function() {
+    document.addEventListener('DOMContentLoaded', function() {
+    const openBtn = document.getElementById('mob-hb-icon');
+    const closeBtn = document.getElementById('mob-x-icon');
+    const mainMenu = document.getElementById('main-menu');
+    const body = document.body;
+
+    openBtn.addEventListener('click', function() {
+        mainMenu.classList.replace('mm-normal', 'mm-mobile-open');
+        closeBtn.style.display = 'block';
+        body.style.overflow = 'hidden';
+    });
+    closeBtn.addEventListener('click', function() {
+        mainMenu.classList.replace('mm-mobile-open', 'mm-normal');
+        closeBtn.style.display = 'none';
+        body.style.overflow = '';
+    });
+    })
+  })();
+  </script>
+  
+  <script>
+  (function() {
+    var mainmenu = document.getElementById('main-menu');
+    if (!mainmenu) return;
+
+    var path = window.location.pathname;
+    var links = mainmenu.querySelectorAll('a');
+
+    links.forEach(function(link) {
+      if (link.getAttribute('href') === path) {
+        link.classList.add('active');
+      }
+    });
+  })();
+  </script>
+  
+</div>
+</header>
+
+      <main>
+        
+
+
+
+
+
+
+
+<h1 class="pg-title">Как да получавате известия при високо натоварване на процесора?</h1>
+
+
+<div class="meta">
+  
+
+
+
+<p>
+
+
+  
+  
+  <span class="meta-icon">
+
+    <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
+
+
+</span>
+  Публикувано на <time datetime="2024-10-28T16:11:31&#43;02:00">Oct 28, 2024</time>
+  
+  
+  
+
+
+  <span class="meta-icon">
+
+    <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z" fill="currentColor"/>
+<path d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2343 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.5459 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z" fill="currentColor"/>
+</svg>
+
+
+</span>
+  
+    7 mins
+  
+
+
+</p>
+
+  
+
+
+<p>
+  <span class="meta-icon"> 
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M48 32H197.5C214.5 32 230.7 38.74 242.7 50.75L418.7 226.7C443.7 251.7 443.7 292.3 418.7 317.3L285.3 450.7C260.3 475.7 219.7 475.7 194.7 450.7L18.75 274.7C6.743 262.7 0 246.5 0 229.5V80C0 53.49 21.49 32 48 32L48 32zM112 176C129.7 176 144 161.7 144 144C144 126.3 129.7 112 112 112C94.33 112 80 126.3 80 144C80 161.7 94.33 176 112 176z"/></svg>
+
+
+ </span>
+  
+  <a class="tag" href="/tags/%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D0%BE%D1%80/">Процесор</a>
+  
+  <a class="tag" href="/tags/%D0%BD%D0%B0%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D0%B2%D0%B0%D0%BD%D0%B5/">Натоварване</a>
+  
+  <a class="tag" href="/tags/powershell/">Powershell</a>
+  
+  <a class="tag" href="/tags/task-scheduler/">Task-Scheduler</a>
+  
+</p>
+
+
+
+</div>
+
+
+
+
+  <div class="toc">
+    <details >
+      <summary accesskey="c" title="(Alt+C)">
+        Съдържание
+      </summary>
+      <div class="toc-innr">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#powershell">PowerShell</a></li>
+    <li><a href="#powershell-ise">PowerShell ISE</a></li>
+    <li><a href="#сигурност">Сигурност</a></li>
+    <li><a href="#скрипт">Скрипт</a></li>
+    <li><a href="#скриване-на-прозореца-при-изпълнение">Скриване на прозореца при изпълнение</a></li>
+    <li><a href="#task-scheduler">Task Scheduler</a></li>
+    <li><a href="#бонус-съдържание">Бонус съдържание</a></li>
+  </ul>
+</nav>
+      </div>
+    </details>
+  </div>
+  
+
+
+
+<p><span>
+
+    
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/UtPteXQ3wzs?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"
+      ></iframe>
+    </div>
+</span></p>
+
+<h2 id="powershell">
+  PowerShell
+  
+  <a hidden class="anchor" href="#powershell">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>В тази статия ще разгледаме как да използваме PowerShell за създаване на скрипт, който събира информация за натоварването на процесора. Този вид скриптове са изключително полезен за системните администратори и IT специалистите, тъй като позволява лесно и бързо наблюдение на използването на процесора в &ldquo;реално време&rdquo; или за определен период. Ще обясним как да използваме вградени командлети в PowerShell, за да съберем данни за натовареността, и ще покажем как тази информация може да бъде анализирана за идентифициране на потенциални проблеми в системната производителност.</p>
+
+<p><details >
+  <summary markdown="span">Какво е <strong>PowerShell</strong> ? <em>(натисни за да видиш)</em></summary>
+  <strong>PowerShell</strong> е мощен инструмент за автоматизация и управление, разработен от Microsoft. Той комбинира възможностите на команден интерфейс и скриптов език, което позволява на системни администратори и разработчици да автоматизират задачи, да управляват конфигурации и да работят със системни ресурси на Windows, Linux и macOS. Основният компонент на <strong>PowerShell</strong> е обектно-ориентирана среда, която използва команди, наречени cmdlet-и, за извършване на операции с обекти от .NET, което прави работата с данни и файлови системи по-интуитивна и гъвкава.
+</details></p>
+
+
+
+<h2 id="powershell-ise">
+  PowerShell ISE
+  
+  <a hidden class="anchor" href="#powershell-ise">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>И преди да започнем със скрипта няколко думи за това, какъв инструмент да използваме. Най-удобният инструмент е вградения в Windows - <strong>PowerShell ISE</strong> <em>(фиг. 1)</em>, какво трябва да знаем за сигурността, когато сваляме готови скриптове.</p>
+
+<p><details >
+  <summary markdown="span">Какво е <strong>PowerShell ISE</strong> ? <em>(натисни за да видиш)</em></summary>
+  <strong>PowerShell ISE</strong> (Integrated Scripting Environment) е интегрирана скриптова среда за PowerShell, разработена от Microsoft. Тя предлага удобен графичен интерфейс, който позволява на потребителите да пишат, редактират, тестват и изпълняват PowerShell скриптове. PowerShell ISE разполага с функции като <em>оцветяване на синтаксиса</em>, <em>автоматично довършване на команди</em>, и <em>дебъгинг</em>, което улеснява създаването на сложни скриптове и намалява вероятността от грешки. Тази среда е подходяща както за начинаещи, така и за напреднали потребители, които искат да автоматизират задачи и да управляват конфигурации в Windows системи.
+</details></p>
+
+
+<p><a href="PowerShell_ISE.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/PowerShell_ISE_hu5508431480058301574.png 330w,
+        /posts/cpu-usage-mon/PowerShell_ISE_hu5461313861332518047.png 660w,
+        /posts/cpu-usage-mon/PowerShell_ISE_hu12999576958218683767.png 1024w,
+        /posts/cpu-usage-mon/PowerShell_ISE_hu8516910518465953116.png 2x"
+        src="/posts/cpu-usage-mon/PowerShell_ISE_hu5461313861332518047.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 1</em></figcaption></figure>
+
+</a>
+</p>
+
+<h2 id="сигурност">
+  Сигурност
+  
+  <a hidden class="anchor" href="#%d1%81%d0%b8%d0%b3%d1%83%d1%80%d0%bd%d0%be%d1%81%d1%82">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>Сигурността при изпълнение на PowerShell скриптове е ключов аспект, особено в корпоративни среди, където неправилно написан или злонамерен скрипт може да изложи на риск цялата система. PowerShell разполага с няколко нива на защита, които се управляват чрез <em>Execution Policy</em> (политика за изпълнение) — настройка, която определя какви скриптове могат да бъдат изпълнявани.</p>
+
+<p><details >
+  <summary markdown="span">Основните команди за управление на тази политика са: <em>(натисни за да видиш)</em></summary>
+  <ul>
+<li><code>Get-ExecutionPolicy</code> – показва текущото ниво на защита.</li>
+<li><code>Set-ExecutionPolicy</code> – променя политиката за изпълнение, като предлага няколко нива:
+<ul>
+<li><code>Restricted</code> – забранява изпълнението на скриптове.</li>
+<li><code>AllSigned</code> – позволява само подписани скриптове от доверени източници.</li>
+<li><code>RemoteSigned</code> – изисква подпис само за скриптове, изтеглени от интернет.</li>
+<li><code>Unrestricted</code> – разрешава изпълнението на всички скриптове, но предупреждава потребителя при стартиране на скрипт от интернет.</li>
+</ul>
+</li>
+</ul>
+
+</details></p>
+
+
+<p>Чрез използването на тези политики и подписването на скриптове администраторите могат да подсигурят изпълнението на PowerShell команди и да предотвратят потенциални заплахи.</p>
+<p>В общия случай се използва политиката за <em>&ldquo;отдалечено подписан скрипт&rdquo;</em>, тъй като по този начин знаем кой е авторът на скрипта и се задава с командата <code>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</code> <em>(фиг.2)</em>.</p>
+<p><a href="policy.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/policy_hu16818988507287133470.png 330w,
+        /posts/cpu-usage-mon/policy_hu6995030079869692468.png 660w,
+        /posts/cpu-usage-mon/policy_hu10978011404608279214.png 1024w,
+        /posts/cpu-usage-mon/policy_hu11612766241412640832.png 2x"
+        src="/posts/cpu-usage-mon/policy_hu6995030079869692468.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 2</em></figcaption></figure>
+
+</a>
+</p>
+
+<h2 id="скрипт">
+  Скрипт
+  
+  <a hidden class="anchor" href="#%d1%81%d0%ba%d1%80%d0%b8%d0%bf%d1%82">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>Следва да преминем към забавната част. Копирайте си скрипта в клипборда, поставете го в <strong>PowerShell ISE</strong> и го запишете на място и с име, които трябва да запомните защото ще ви трябват по-късно. Можете да го стартирате със зелената стрелка и да го спрете със стоп бутона <em>(фиг. 1)</em>.</p>
+
+  
+
+
+<div class="callout"
+  
+>
+<span class="icon"
+
+>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+
+
+
+</span>
+<span class="txt"
+
+>
+Създайте папка <code>c:\Users\вашето потребителско име\scripts</code> и записвайте там своите скриптове.
+</span>
+</div>
+
+
+  
+
+
+<div class="callout"
+  
+>
+<span class="icon"
+
+>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M506.3 417l-213.3-364c-16.33-28-57.54-28-73.98 0l-213.2 364C-10.59 444.9 9.849 480 42.74 480h426.6C502.1 480 522.6 445 506.3 417zM232 168c0-13.25 10.75-24 24-24S280 154.8 280 168v128c0 13.25-10.75 24-23.1 24S232 309.3 232 296V168zM256 416c-17.36 0-31.44-14.08-31.44-31.44c0-17.36 14.07-31.44 31.44-31.44s31.44 14.08 31.44 31.44C287.4 401.9 273.4 416 256 416z"/></svg>
+
+
+
+</span>
+<span class="txt"
+
+>
+Всички скриптове трабва да носят разширение <code>.ps1</code>
+</span>
+</div>
+
+<div class="highlight"><div style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">26
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">27
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">28
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">29
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">30
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">31
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">32
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">33
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">34
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">35
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">36
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">37
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">38
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">39
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">40
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">41
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">42
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">43
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">44
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">45
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#928374;font-style:italic">#   ____ _   _ ____  ____   ___  ____  ____   ____</span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic">#  / ___| | | |  _ \/ ___| / _ \|  _ \| __ ) / ___|</span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># | |   | | | | |_) \___ \| | | | |_) |  _ \| |  _</span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># | |___| |_| |  _ &lt; ___) | |_| |  _ &lt;| |_) | |_| |</span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic">#  \____|\___/|_| \_\____/ \___/|_| \_\____/ \____|</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># Скрипт за проверка състоянието на процесора и извеждане на информация</span>
+</span></span><span style="display:flex;"><span>$cpuThreshold = <span style="color:#d3869b">90</span>  <span style="color:#928374;font-style:italic"># предел на натоварването</span>
+</span></span><span style="display:flex;"><span>$notificationCooldown = <span style="color:#d3869b">300</span>  <span style="color:#928374;font-style:italic"># 300 seconds = 5 minutes</span>
+</span></span><span style="display:flex;"><span>$notificationSentTime = $null
+</span></span><span style="display:flex;"><span><span style="color:#fabd2f">Add-Type</span> -AssemblyName System.Windows.Forms
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># Get the script&#39;s startup folder</span>
+</span></span><span style="display:flex;"><span>$scriptStartupFolder = <span style="color:#fabd2f">Split-Path</span> -Parent $MyInvocation.MyCommand.Definition
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># Безкраен цикъл за следене състоянието на процесора</span>
+</span></span><span style="display:flex;"><span><span style="color:#fe8019">while</span> ($true) {
+</span></span><span style="display:flex;"><span>    <span style="color:#928374;font-style:italic"># Взимане на текущото натоварване на процесора от Task Manager</span>
+</span></span><span style="display:flex;"><span>    $cpuUsage = (<span style="color:#fabd2f">Get-Counter</span> <span style="color:#b8bb26">&#39;\Processor(_Total)\% Processor Time&#39;</span>).CounterSamples.CookedValue
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#928374;font-style:italic"># Ако натоварването на процесора надхвърли прага, регистрира събитието, ако това не се е случило в последните 5 мин.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#fe8019">if</span> ($cpuUsage <span style="color:#fe8019">-gt</span> $cpuThreshold <span style="color:#fe8019">-and</span> (!$notificationSentTime <span style="color:#fe8019">-or</span> (<span style="color:#fabd2f">New-TimeSpan</span> -Start $notificationSentTime).TotalSeconds <span style="color:#fe8019">-ge</span> $notificationCooldown)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#928374;font-style:italic"># Create a timestamp</span>
+</span></span><span style="display:flex;"><span>        $timestamp = <span style="color:#fabd2f">Get-Date</span> -Format <span style="color:#b8bb26">&#34;yyyy-MM-dd HH:mm:ss&#34;</span>
+</span></span><span style="display:flex;"><span>        $message = <span style="color:#b8bb26">&#34;Warning: CPU usage is above </span>$cpuThreshold<span style="color:#b8bb26">%! Current usage is </span>$cpuUsage<span style="color:#b8bb26">% at </span>$timestamp<span style="color:#b8bb26">.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#928374;font-style:italic"># Регистрира събитието в текстов файл</span>
+</span></span><span style="display:flex;"><span>        $logFile = <span style="color:#b8bb26">&#34;</span>$scriptStartupFolder<span style="color:#b8bb26">\cpu-alert-log.txt&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#fabd2f">Add-Content</span> $logFile $message
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#928374;font-style:italic"># Възможност за извеждане съобщение на екрана ( Windows 10+ )</span>
+</span></span><span style="display:flex;"><span>        $objNotifyIcon = <span style="color:#fabd2f">New-Object</span> System.Windows.Forms.NotifyIcon
+</span></span><span style="display:flex;"><span>        $objNotifyIcon.Icon = [<span style="color:#d3869b">System.Drawing.SystemIcons</span>]::Information
+</span></span><span style="display:flex;"><span>        $objNotifyIcon.BalloonTipTitle = <span style="color:#b8bb26">&#34;Warning!&#34;</span>
+</span></span><span style="display:flex;"><span>        $objNotifyIcon.BalloonTipText = <span style="color:#b8bb26">&#34;</span>$message<span style="color:#b8bb26">&#34;</span>
+</span></span><span style="display:flex;"><span>        $objNotifyIcon.Visible = $true
+</span></span><span style="display:flex;"><span>        $objNotifyIcon.ShowBalloonTip(<span style="color:#d3869b">10000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#928374;font-style:italic"># Записва кога е изпратено съобщението</span>
+</span></span><span style="display:flex;"><span>        $notificationSentTime = <span style="color:#fabd2f">Get-Date</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#928374;font-style:italic"># Пауза за 5 секунди преди следващата проверка</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#fabd2f">Start-Sleep</span> -Seconds <span style="color:#d3869b">5</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></td></tr></table>
+</div>
+</div>
+<h2 id="скриване-на-прозореца-при-изпълнение">
+  Скриване на прозореца при изпълнение
+  
+  <a hidden class="anchor" href="#%d1%81%d0%ba%d1%80%d0%b8%d0%b2%d0%b0%d0%bd%d0%b5-%d0%bd%d0%b0-%d0%bf%d1%80%d0%be%d0%b7%d0%be%d1%80%d0%b5%d1%86%d0%b0-%d0%bf%d1%80%d0%b8-%d0%b8%d0%b7%d0%bf%d1%8a%d0%bb%d0%bd%d0%b5%d0%bd%d0%b8%d0%b5">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>При изпълнението на всеки скрипт в Windows винаги има видим прозорец (PowerShell ISE, PowerShell конзолата или Windows Terminal). Към този момент сме открили само един начин за ефективно скриване на прозореца. Оригиналният скрипт на Andreas Mariotti може да бъде намерен <a href="https://www-mariotti-de.translate.goog/simpler-powershell-host-zum-ausfuehren-von-powershell-skripten-ohne-stoerendes-konsolenfenster/?_x_tr_sl=auto&amp;_x_tr_tl=en&amp;_x_tr_hl=de&amp;_x_tr_pto=wapp" target="_blank"><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+тук</a>
+. В нашата версия има леки промени, но като цяло е запазен оригиналът.</p>
+<div class="highlight"><div style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">
+<table style="border-spacing:0;padding:0;margin:0;border:0;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
+<pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 1
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 2
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 3
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 4
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 5
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 6
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 7
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 8
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59"> 9
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">10
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">11
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">12
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">13
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">14
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">15
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">16
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">17
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">18
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">19
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">20
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">21
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">22
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">23
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">24
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">25
+</span><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#756d59">26
+</span></code></pre></td>
+<td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
+<pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># Original script by Andreas Mariotti:</span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># https://www-mariotti-de.translate.goog/simpler-powershell-host-zum-ausfuehren-von-powershell-skripten-ohne-stoerendes-konsolenfenster/?_x_tr_sl=auto&amp;_x_tr_tl=en&amp;_x_tr_hl=de&amp;_x_tr_pto=wapp</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># Get the script&#39;s startup folder</span>
+</span></span><span style="display:flex;"><span>$scriptStartupFolder = <span style="color:#fabd2f">Split-Path</span> -Parent $MyInvocation.MyCommand.Definition
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># Inline C# code for a simple PowerShell host and compile</span>
+</span></span><span style="display:flex;"><span>$code = <span style="color:#b8bb26">@&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">using System.Management.Automation;
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">using System.Collections.ObjectModel;
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">namespace PowerShellHost {
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">  class Program {
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">    static void Main(string[] args) {
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">      if (args.Length == 0) return;
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">      using (PowerShell ps = PowerShell.Create()) {
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">        string code = System.IO.File.ReadAllText(args[0]);
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">        ps.AddScript(code);
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">        Collection &lt;PSObject&gt; psobject = ps.Invoke();
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">      }
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">  }
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">}
+</span></span></span><span style="display:flex;"><span><span style="color:#b8bb26">&#39;@</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#928374;font-style:italic"># Compile</span>
+</span></span><span style="display:flex;"><span><span style="color:#fabd2f">Add-Type</span> -OutputAssembly <span style="color:#b8bb26">&#34;</span>$scriptStartupFolder<span style="color:#b8bb26">\PowerShellHost.exe&#34;</span> -OutputType <span style="color:#b8bb26">&#39;WindowsApplication&#39;</span>  -TypeDefinition $code
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Скрипта трябва да запишете на същото място както и предния, след което е достатъчно да се стартира веднъж и в същата папката ще се появи <strong>PowerShellHost.exe</strong>.</p>
+
+<h2 id="task-scheduler">
+  Task Scheduler
+  
+  <a hidden class="anchor" href="#task-scheduler">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>Следващата стъпка е да настроим Windows да пуска скрипта при стартиране. За тази цел ще използваме <strong>Task Scheduler</strong> <em>(фиг. 3)</em> компонента на операционната система.</p>
+
+<p><details >
+  <summary markdown="span">Какво е <strong>Task Scheduler</strong> ? <em>(натисни за да видиш)</em></summary>
+  <strong>Task Scheduler</strong> е вграден инструмент в операционната система Windows за автоматизиране на изпълнението на задачи. Позволява планиране на стартирането на програми, скриптове или други процеси в определено време, при настъпване на зададени събития или по установен график. Task Scheduler работи във фонов режим и може да се използва за редовни задачи като архивиране на данни, обновления на софтуер или системни проверки.
+</details></p>
+
+
+<p>За да стартирате Task Scheduler, можете да натиснете <span class="icon">
+  
+
+    <?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 27.7.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#0078D4;}
+</style>
+<g>
+	<path class="st0" d="M0,0h242.7v242.6H0V0z M269.3,0H512v242.6H269.3V0z M0,269.3h242.7V512H0V269.3z M269.3,269.3H512V512H269.3"
+		/>
+</g>
+</svg>
+
+
+
+</span>
+ клавиша на клавиатурата и да изпишете <code>sched</code> или <code>task</code>.</p>
+<p><a href="TaskScheduler.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/TaskScheduler_hu17400243643018815261.png 330w,
+        /posts/cpu-usage-mon/TaskScheduler_hu16761654372526995644.png 660w,
+        /posts/cpu-usage-mon/TaskScheduler_hu9245708829851870326.png 1024w,
+        /posts/cpu-usage-mon/TaskScheduler_hu2970042137762345939.png 2x"
+        src="/posts/cpu-usage-mon/TaskScheduler_hu16761654372526995644.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 3</em></figcaption></figure>
+
+</a>
+</p>
+<p>В инструмента трябва да натиснете върху <code>Task Scheduler Library</code>(1) в лявата секция, след което ще се появи в дясната секция възможност за създаване на нова задача <code>Create Task...</code>(2) <em>(фиг. 4)</em>.</p>
+<p><a href="cpu1.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/cpu1_hu770694014055924800.png 330w,
+        /posts/cpu-usage-mon/cpu1_hu10941531332660491212.png 660w,
+        /posts/cpu-usage-mon/cpu1_hu5034567091672360422.png 1024w,
+        /posts/cpu-usage-mon/cpu1_hu12754163305839719720.png 2x"
+        src="/posts/cpu-usage-mon/cpu1_hu10941531332660491212.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 4</em></figcaption></figure>
+
+</a>
+</p>
+<p>За име(3) на задачата напишете нещо кратко, което да Ви подсеща за темата на задачата. В описанието(4) може да се отпуснете и да пишете по-подробно. Точка (5) от <em>(фиг. 4)</em> указва изпълнението на задачата да се извърши само след зареждане на <em>потребителя</em>.</p>
+<p><a href="cpu2.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/cpu2_hu8278619979867273395.png 330w,
+        /posts/cpu-usage-mon/cpu2_hu10485195276420570220.png 660w,
+        /posts/cpu-usage-mon/cpu2_hu8953255651666905517.png 1024w,
+        /posts/cpu-usage-mon/cpu2_hu16887683677686912048.png 2x"
+        src="/posts/cpu-usage-mon/cpu2_hu10485195276420570220.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 5</em></figcaption></figure>
+
+</a>
+</p>
+<p>Сега трябва да зададем на второто &ldquo;табче&rdquo;, кога да се стартира задачата като следваме стъпките от <em>(фиг. 5)</em>.</p>
+<p><a href="cpu3.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/cpu3_hu5989972484860295467.png 330w,
+        /posts/cpu-usage-mon/cpu3_hu14004575153488899777.png 660w,
+        /posts/cpu-usage-mon/cpu3_hu4670256508817497343.png 1024w,
+        /posts/cpu-usage-mon/cpu3_hu4651317022123496289.png 2x"
+        src="/posts/cpu-usage-mon/cpu3_hu14004575153488899777.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 6</em></figcaption></figure>
+
+</a>
+</p>
+<p>Аналогично следвате стъпките от <em>(фиг. 6)</em> и ако сте спазили препоръкта по-рано, в стъпка (4) трябва да сте получили <code>&quot;c:\Users\вашето потребителско име\scripts\PowerShellHost.exe&quot;</code>, а в стъпка (5) <code>&quot;c:\Users\вашето потребителско име\scripts\името на скрипт1.ps1&quot;</code>.</p>
+<p><a href="cpu4.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/cpu4_hu7462729543180227962.png 330w,
+        /posts/cpu-usage-mon/cpu4_hu5890675924056598549.png 660w,
+        /posts/cpu-usage-mon/cpu4_hu17949425934562801822.png 1024w,
+        /posts/cpu-usage-mon/cpu4_hu241809944542514980.png 2x"
+        src="/posts/cpu-usage-mon/cpu4_hu5890675924056598549.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 7</em></figcaption></figure>
+
+</a>
+</p>
+<p><a href="cpu5.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/cpu-usage-mon/cpu5_hu4607051670516570184.png 330w,
+        /posts/cpu-usage-mon/cpu5_hu11895159598016130178.png 660w,
+        /posts/cpu-usage-mon/cpu5_hu3403260643420769922.png 1024w,
+        /posts/cpu-usage-mon/cpu5_hu7828604568056242423.png 2x"
+        src="/posts/cpu-usage-mon/cpu5_hu11895159598016130178.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 8</em></figcaption></figure>
+
+</a>
+</p>
+<p>Пресъздайте настройките, както са показани на <em>(фиг. 7)</em> и <em>(фиг. 8)</em>. Когато сте готови запишете задачата с <code>ОК</code> бутона.</p>
+<p>Вече всичко е готово! Сега, ако не ни се чака до следващия рестарт на системата можем да натиснем десен клавиш върху задачата и да изберем <code>Run</code>.</p>
+
+<h2 id="бонус-съдържание">
+  Бонус съдържание
+  
+  <a hidden class="anchor" href="#%d0%b1%d0%be%d0%bd%d1%83%d1%81-%d1%81%d1%8a%d0%b4%d1%8a%d1%80%d0%b6%d0%b0%d0%bd%d0%b8%d0%b5">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>Разбира се може да направите промени по скрипта. Например, ако желаете скриптът да реагира по-рано можете да промените ред 8 със желаната стойност</p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$cpuThreshold = <span style="color:#d3869b">75</span>  <span style="color:#928374;font-style:italic"># предел на натоварването</span>
+</span></span></code></pre></div><p>или да промените известието(ред 25) на български език</p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>$message = <span style="color:#b8bb26">&#34;Натоварването на процесора е над </span>$cpuThreshold<span style="color:#b8bb26">%! В </span>$timestamp<span style="color:#b8bb26"> натоварването е </span>$cpuUsage<span style="color:#b8bb26">%.&#34;</span>
+</span></span></code></pre></div><p>Експериментирайте&hellip;</p>
+
+
+
+
+
+
+
+
+
+
+
+<nav class="pagenav">
+  
+    <a class="prev" href="/posts/spooler-restart/">
+      <span class="direction">« Предишна публикация</span>
+      <br>
+      <span> Принтерът блокира! (Скрипт за Print Spooler) </span>
+    </a>
+  
+  
+  <div></div>
+  
+</nav>
+
+
+
+
+
+
+
+
+      </main>
+      <footer>
+  <div class="copyright">
+     © 2024  cursor.bg 
+  </div>
+  
+  <div class="attribution">
+    Създадено с <a href="https://gohugo.io" target="_blank">Hugo</a> и <a href="https://github.com/mnjm/kayal" target="_blank">Kayal</a>
+  </div>
+  
+</footer>
+
+    </div>
+  </body>
+</html>

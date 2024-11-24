@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Процесор on cursor.bg</title>
+    <link>https://cursor.bg/tags/%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D0%BE%D1%80/</link>
+    <description>Recent content in Процесор on cursor.bg</description>
+    <generator>Hugo -- 0.139.0</generator>
+    <language>bg-bg</language>
+    <lastBuildDate>Mon, 28 Oct 2024 16:11:31 +0200</lastBuildDate>
+    <atom:link href="https://cursor.bg/tags/%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D0%BE%D1%80/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Как да получавате известия при високо натоварване на процесора?</title>
+      <link>https://cursor.bg/posts/cpu-usage-mon/</link>
+      <pubDate>Mon, 28 Oct 2024 16:11:31 +0200</pubDate>
+      <guid>https://cursor.bg/posts/cpu-usage-mon/</guid>
+      <description>Колко често се е случвало компютъра да Ви се забавя ужасно?</description>
+    </item>
+  </channel>
+</rss>
