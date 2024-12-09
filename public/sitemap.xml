@@ -1,133 +1,169 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://cursor.bg/</loc>
+    <loc>http://localhost:1313/</loc>
+    <lastmod>2024-12-05T09:47:09+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/tags/dhcp/</loc>
+    <lastmod>2024-12-05T09:47:09+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/tags/dns/</loc>
+    <lastmod>2024-12-05T09:47:09+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/tags/ip/</loc>
+    <lastmod>2024-12-05T09:47:09+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/posts/ipv4/</loc>
+    <lastmod>2024-12-05T09:47:09+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/tags/mask/</loc>
+    <lastmod>2024-12-05T09:47:09+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/tags/subnet/</loc>
+    <lastmod>2024-12-05T09:47:09+02:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>http://localhost:1313/tags/shortcut/</loc>
     <lastmod>2024-11-14T16:12:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/shortcut/</loc>
+    <loc>http://localhost:1313/posts/shortcuts/</loc>
     <lastmod>2024-11-14T16:12:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/posts/shortcuts/</loc>
+    <loc>http://localhost:1313/tags/%D1%88%D0%BE%D1%80%D1%82%D0%BA%D1%8A%D1%82/</loc>
     <lastmod>2024-11-14T16:12:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/%D1%88%D0%BE%D1%80%D1%82%D0%BA%D1%8A%D1%82/</loc>
-    <lastmod>2024-11-14T16:12:45+02:00</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://cursor.bg/tags/multipar/</loc>
+    <loc>http://localhost:1313/tags/multipar/</loc>
     <lastmod>2024-11-12T16:12:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/par2/</loc>
+    <loc>http://localhost:1313/tags/par2/</loc>
     <lastmod>2024-11-12T16:12:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/parchive/</loc>
+    <loc>http://localhost:1313/tags/parchive/</loc>
     <lastmod>2024-11-12T16:12:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/posts/parchive/</loc>
+    <loc>http://localhost:1313/posts/parchive/</loc>
     <lastmod>2024-11-12T16:12:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/spooler/</loc>
+    <loc>http://localhost:1313/tags/spooler/</loc>
     <lastmod>2024-10-28T16:11:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/%D0%BD%D0%B0%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D0%B2%D0%B0%D0%BD%D0%B5/</loc>
+    <loc>http://localhost:1313/tags/%D0%BD%D0%B0%D1%82%D0%BE%D0%B2%D0%B0%D1%80%D0%B2%D0%B0%D0%BD%D0%B5/</loc>
     <lastmod>2024-10-28T16:11:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/%D0%BF%D0%B5%D1%87%D0%B0%D1%82/</loc>
+    <loc>http://localhost:1313/tags/%D0%BF%D0%B5%D1%87%D0%B0%D1%82/</loc>
     <lastmod>2024-10-28T16:11:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D0%B5%D1%80/</loc>
+    <loc>http://localhost:1313/tags/%D0%BF%D1%80%D0%B8%D0%BD%D1%82%D0%B5%D1%80/</loc>
     <lastmod>2024-10-28T16:11:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/posts/spooler-restart/</loc>
+    <loc>http://localhost:1313/posts/spooler-restart/</loc>
     <lastmod>2024-10-28T16:11:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/%D1%81%D0%BF%D1%83%D0%BB%D0%B5%D1%80/</loc>
+    <loc>http://localhost:1313/tags/%D1%81%D0%BF%D1%83%D0%BB%D0%B5%D1%80/</loc>
     <lastmod>2024-10-28T16:11:45+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/powershell/</loc>
+    <loc>http://localhost:1313/tags/powershell/</loc>
     <lastmod>2024-10-28T16:11:31+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/task-scheduler/</loc>
+    <loc>http://localhost:1313/tags/task-scheduler/</loc>
     <lastmod>2024-10-28T16:11:31+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/posts/cpu-usage-mon/</loc>
+    <loc>http://localhost:1313/posts/cpu-usage-mon/</loc>
     <lastmod>2024-10-28T16:11:31+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D0%BE%D1%80/</loc>
+    <loc>http://localhost:1313/tags/%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D0%BE%D1%80/</loc>
     <lastmod>2024-10-28T16:11:31+02:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/posts/</loc>
+    <loc>http://localhost:1313/posts/</loc>
     <lastmod>2024-07-21T17:40:15+05:30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/tags/</loc>
+    <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-07-21T17:40:15+05:30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/aboutus/</loc>
+    <loc>http://localhost:1313/aboutus/</loc>
     <lastmod>2024-07-20T22:53:59+05:30</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
-    <loc>https://cursor.bg/categories/</loc>
+    <loc>http://localhost:1313/categories/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url>

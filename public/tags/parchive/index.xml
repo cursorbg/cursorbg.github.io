@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Parchive on cursor.bg</title>
-    <link>https://cursor.bg/tags/parchive/</link>
+    <link>http://localhost:1313/tags/parchive/</link>
     <description>Recent content in Parchive on cursor.bg</description>
-    <generator>Hugo -- 0.139.0</generator>
+    <generator>Hugo -- 0.140.0-DEV</generator>
     <language>bg-bg</language>
     <lastBuildDate>Tue, 12 Nov 2024 16:12:45 +0200</lastBuildDate>
-    <atom:link href="https://cursor.bg/tags/parchive/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/parchive/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Спасете данните си с тази програма!</title>
-      <link>https://cursor.bg/posts/parchive/</link>
+      <link>http://localhost:1313/posts/parchive/</link>
       <pubDate>Tue, 12 Nov 2024 16:12:45 +0200</pubDate>
-      <guid>https://cursor.bg/posts/parchive/</guid>
+      <guid>http://localhost:1313/posts/parchive/</guid>
       <description>Parchive (Par или Parity Archive) е файлов формат за възстановяване на данни, използван за поправка на повредени или липсващи файлове.</description>
     </item>
   </channel>
