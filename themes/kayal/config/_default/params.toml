@@ -40,7 +40,7 @@ enableSearch = true
 # Whether to show recent items on the homepage.
 showRecent = true
 # Heading label for recent items.
-showRecentLabel = "Featured"
+showRecentLabel = "Последни"
 # Number of recent items to show.
 showRecentItems = 4
 # Whether to display a "Show more" link at the end of recent section that directs to `showMoreDest`.

@@ -245,7 +245,7 @@ details[open] div {
   color: var(--tertiary-color);
   font-size: 2rem;
   font-weight: bold;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: .008em;
   -webkit-text-stroke-color: black;
   border-bottom: none;
 }
