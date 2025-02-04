@@ -136,6 +136,10 @@ code {
   overflow: break-word;
 }
 
+a code {
+  border-bottom: 2px solid var(--tertiary-color);
+}
+
 pre {
   line-height: 1.5;
   padding: 0.5em;
@@ -245,7 +249,7 @@ details[open] div {
   color: var(--tertiary-color);
   font-size: 2rem;
   font-weight: bold;
-  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-width: .008em;
   -webkit-text-stroke-color: black;
   border-bottom: none;
 }

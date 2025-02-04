@@ -1,0 +1,1446 @@
+<!DOCTYPE html>
+<html lang="bg-bg" dir="ltr">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+  <meta http-equiv="content-language" content="bg-bg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+  
+  
+  <title>Какво е защитна стена и какво трябва да знаем за нея? &middot; cursor.bg</title>
+  <meta name="title" content="Какво е защитна стена и какво трябва да знаем за нея? &middot; cursor.bg" />
+  
+
+  
+  
+  <meta name="description" content="Основи на компютърните мрежи. Защитна стена." />
+  
+  <meta name="keywords" content="firewall, tcp, udp, ports, " />
+  <link rel="canonical" href="http://localhost:1313/posts/firewall/" />
+
+  
+
+  
+    
+        <link rel="stylesheet" href="/css/theme.css">
+    
+  
+    
+        <link rel="stylesheet" href="/css/main.css">
+    
+  
+    
+  
+
+
+  
+
+
+  
+
+
+
+  
+
+
+
+  
+    
+        <script src="/js/theme.js"></script>
+      
+    
+  
+
+  
+    
+        <script src="/js/codecopy.js"></script>
+      
+    
+  
+
+  
+    
+        <script src="/js/search.js"></script>
+      
+    
+  
+
+
+
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+  
+
+  <meta property="og:url" content="http://localhost:1313/posts/firewall/">
+  <meta property="og:site_name" content="cursor.bg">
+  <meta property="og:title" content="Какво е защитна стена и какво трябва да знаем за нея?">
+  <meta property="og:description" content="Основи на компютърните мрежи. Защитна стена.">
+  <meta property="og:locale" content="bg_bg">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-02-04T15:30:19+02:00">
+    <meta property="article:modified_time" content="2025-02-04T15:30:19+02:00">
+    <meta property="article:tag" content="Firewall">
+    <meta property="article:tag" content="Tcp">
+    <meta property="article:tag" content="Udp">
+    <meta property="article:tag" content="Ports">
+
+  
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Какво е защитна стена и какво трябва да знаем за нея?">
+  <meta name="twitter:description" content="Основи на компютърните мрежи. Защитна стена.">
+
+  
+
+  
+  
+
+
+
+
+
+
+
+  
+  
+    <script
+      defer
+      type="text/javascript"
+      src="/lib/fuse/fuse.min.1ab2783fdcab6ba75fb69e4ed1e68a14a4b8721d45627d7147f5421d020c24ed4b36a70a8639009001131d8a04f3515f87706308931603f0194983f9db58f114.js"
+      integrity="sha512-GrJ4P9yra6dftp5O0eaKFKS4ch1FYn1xR/VCHQIMJO1LNqcKhjkAkAETHYoE81Ffh3BjCJMWA/AZSYP521jxFA=="
+    ></script>
+  
+
+
+
+  
+  
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+    <link rel="preload" href="http://localhost:1313/fonts/Ubuntu-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  
+
+  
+
+  
+
+</head>
+
+  <body>
+    <script>
+      const siteTheme = "auto";
+      let savedTheme = localStorage.getItem('theme') || siteTheme;
+      if (savedTheme == 'auto') {
+        if ( window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ) {
+          savedTheme = 'dark';
+        }
+      }
+      if (savedTheme === "dark") {
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    </script>
+    <div class="content">
+      <header>
+    
+    <a class="title" href="/">
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        src="/cursorbg_hu7059648859393039915.png"
+      
+    
+      alt="Site Logo" />
+  
+
+
+
+
+    </a>
+    
+    <div class="header-cntr">
+    <a class="title" href="/">
+    <span>cursor.bg</span>
+    </a>
+  <div class="menu">
+  <nav id="main-menu" class="mm-normal">
+    <ul>
+    <li> <button id="mob-x-icon" class="menu-btn" arial-label="x-icon"> 
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+
+ </button> </li>
+    
+      <li><a href="/posts/" aria-label="posts">
+      Постове</li></a>
+    
+      <li><a href="/tags/" aria-label="tags">
+      Тагове</li></a>
+    
+      <li><a href="/aboutus/" aria-label="aboutus">
+      За нас</li></a>
+    
+    </ul>
+  </nav>
+    <div class="side-menu">
+    
+<button id="search-open" class="menu-btn" aria-label="Search button">
+  
+
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+
+
+</button>
+
+<div id="search-container" data-url="http://localhost:1313/">
+  <div class="search">
+    <div class="panel">
+      <form>
+        
+
+    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" class="svg-inline--fa fa-search fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"/></svg>
+
+
+
+        <input type="search" id="search-query" placeholder="Search" tabindex=0 autocomplete="off"/>
+        <button id="search-close" title="Cancel (ESC)">
+          
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
+
+
+
+        </button>
+      </form>
+    </div>
+    <ul id="search-results">
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    </ul>
+  </div>
+</div>
+
+    
+    <button id="theme-switcher" class="menu-btn" aria-label="Theme switcher">
+      <div id="moon">
+      
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M32 256c0-123.8 100.3-224 223.8-224c11.36 0 29.7 1.668 40.9 3.746c9.616 1.777 11.75 14.63 3.279 19.44C245 86.5 211.2 144.6 211.2 207.8c0 109.7 99.71 193 208.3 172.3c9.561-1.805 16.28 9.324 10.11 16.95C387.9 448.6 324.8 480 255.8 480C132.1 480 32 379.6 32 256z"/></svg>
+
+
+
+      </div>
+      <div id="sun">
+      
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M256 159.1c-53.02 0-95.1 42.98-95.1 95.1S202.1 351.1 256 351.1s95.1-42.98 95.1-95.1S309 159.1 256 159.1zM509.3 347L446.1 255.1l63.15-91.01c6.332-9.125 1.104-21.74-9.826-23.72l-109-19.7l-19.7-109c-1.975-10.93-14.59-16.16-23.72-9.824L256 65.89L164.1 2.736c-9.125-6.332-21.74-1.107-23.72 9.824L121.6 121.6L12.56 141.3C1.633 143.2-3.596 155.9 2.736 164.1L65.89 256l-63.15 91.01c-6.332 9.125-1.105 21.74 9.824 23.72l109 19.7l19.7 109c1.975 10.93 14.59 16.16 23.72 9.824L256 446.1l91.01 63.15c9.127 6.334 21.75 1.107 23.72-9.822l19.7-109l109-19.7C510.4 368.8 515.6 356.1 509.3 347zM256 383.1c-70.69 0-127.1-57.31-127.1-127.1c0-70.69 57.31-127.1 127.1-127.1s127.1 57.3 127.1 127.1C383.1 326.7 326.7 383.1 256 383.1z"/></svg>
+
+
+
+      </div>
+    </button>
+    
+    </div>
+    <button id="mob-hb-icon" class="menu-btn" aria-label="Hamburger icon">
+      
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M0 96C0 78.33 14.33 64 32 64H416C433.7 64 448 78.33 448 96C448 113.7 433.7 128 416 128H32C14.33 128 0 113.7 0 96zM0 256C0 238.3 14.33 224 32 224H416C433.7 224 448 238.3 448 256C448 273.7 433.7 288 416 288H32C14.33 288 0 273.7 0 256zM416 448H32C14.33 448 0 433.7 0 416C0 398.3 14.33 384 32 384H416C433.7 384 448 398.3 448 416C448 433.7 433.7 448 416 448z"/></svg>
+
+
+
+    </button>
+  </div>
+  <script>
+  (function() {
+    document.addEventListener('DOMContentLoaded', function() {
+    const openBtn = document.getElementById('mob-hb-icon');
+    const closeBtn = document.getElementById('mob-x-icon');
+    const mainMenu = document.getElementById('main-menu');
+    const body = document.body;
+
+    openBtn.addEventListener('click', function() {
+        mainMenu.classList.replace('mm-normal', 'mm-mobile-open');
+        closeBtn.style.display = 'block';
+        body.style.overflow = 'hidden';
+    });
+    closeBtn.addEventListener('click', function() {
+        mainMenu.classList.replace('mm-mobile-open', 'mm-normal');
+        closeBtn.style.display = 'none';
+        body.style.overflow = '';
+    });
+    })
+  })();
+  </script>
+  
+  <script>
+  (function() {
+    var mainmenu = document.getElementById('main-menu');
+    if (!mainmenu) return;
+
+    var path = window.location.pathname;
+    var links = mainmenu.querySelectorAll('a');
+
+    links.forEach(function(link) {
+      if (link.getAttribute('href') === path) {
+        link.classList.add('active');
+      }
+    });
+  })();
+  </script>
+  
+</div>
+</header>
+
+      <main>
+        
+
+
+
+
+
+
+
+<h1 class="pg-title">Какво е защитна стена и какво трябва да знаем за нея?</h1>
+
+
+<div class="meta">
+  
+
+
+
+<p>
+
+
+  
+  
+  <span class="meta-icon">
+
+    <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg fill="currentColor" width="800px" height="800px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19,4H17V3a1,1,0,0,0-2,0V4H9V3A1,1,0,0,0,7,3V4H5A3,3,0,0,0,2,7V19a3,3,0,0,0,3,3H19a3,3,0,0,0,3-3V7A3,3,0,0,0,19,4Zm1,15a1,1,0,0,1-1,1H5a1,1,0,0,1-1-1V12H20Zm0-9H4V7A1,1,0,0,1,5,6H7V7A1,1,0,0,0,9,7V6h6V7a1,1,0,0,0,2,0V6h2a1,1,0,0,1,1,1Z"/></svg>
+
+
+</span>
+  Публикувано на <time datetime="2025-02-04T15:30:19&#43;02:00">Feb 4, 2025</time>
+  
+  
+  
+
+
+  <span class="meta-icon">
+
+    <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg width="800px" height="800px" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z" fill="currentColor"/>
+<path d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2343 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.5459 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z" fill="currentColor"/>
+</svg>
+
+
+</span>
+  
+    9 mins
+  
+
+
+</p>
+
+  
+
+
+<p>
+  <span class="meta-icon"> 
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M48 32H197.5C214.5 32 230.7 38.74 242.7 50.75L418.7 226.7C443.7 251.7 443.7 292.3 418.7 317.3L285.3 450.7C260.3 475.7 219.7 475.7 194.7 450.7L18.75 274.7C6.743 262.7 0 246.5 0 229.5V80C0 53.49 21.49 32 48 32L48 32zM112 176C129.7 176 144 161.7 144 144C144 126.3 129.7 112 112 112C94.33 112 80 126.3 80 144C80 161.7 94.33 176 112 176z"/></svg>
+
+
+ </span>
+  
+  <a class="tag" href="/tags/firewall/">Firewall</a>
+  
+  <a class="tag" href="/tags/tcp/">Tcp</a>
+  
+  <a class="tag" href="/tags/udp/">Udp</a>
+  
+  <a class="tag" href="/tags/ports/">Ports</a>
+  
+</p>
+
+
+
+</div>
+
+
+
+
+  <div class="toc">
+    <details >
+      <summary accesskey="c" title="(Alt+C)">
+        Съдържание
+      </summary>
+      <div class="toc-innr">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#какво-е-защитна-стена">Какво е защитна стена?</a></li>
+    <li><a href="#основни-функции-на-защитната-стена">Основни функции на защитната стена</a></li>
+    <li><a href="#принцип-на-работа">Принцип на работа</a>
+      <ul>
+        <li><a href="#метод-1-чрез-графичния-интерфейс">Метод 1: Чрез графичния интерфейс</a></li>
+        <li><a href="#метод-2-чрез-powershell">Метод 2: Чрез PowerShell</a></li>
+      </ul>
+    </li>
+    <li><a href="#работа-със-защитната-стена">Работа със защитната стена</a>
+      <ul>
+        <li><a href="#методи-за-достигане-до-настройките-на-windows-firewall">Методи за достигане до настройките на Windows Firewall</a></li>
+        <li><a href="#добавяне-на-нова-програма-или-редактиране-на-добавена-такава">Добавяне на нова програма или редактиране на добавена такава</a></li>
+        <li><a href="#работа-с-windows-defender-firewall-with-advanced-security">Работа с &ldquo;Windows Defender Firewall with Advanced Security&rdquo;</a></li>
+        <li><a href="#възстановяване-на-настройките-на-windows-firewall">Възстановяване на настройките на Windows Firewall</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </details>
+  </div>
+  
+
+
+
+<p><span>
+
+    
+    <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;">
+      <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="allowfullscreen" loading="eager" referrerpolicy="strict-origin-when-cross-origin" src="https://www.youtube.com/embed/dpw4RkI9054?autoplay=0&controls=1&end=0&loop=0&mute=0&start=0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" title="YouTube video"
+      ></iframe>
+    </div>
+</span></p>
+<p>Днес се потапяме в нещо, което е от решаващо значение за поддържането на безопасността на вашия компютър, но често се пренебрегва – защитната стена на Windows. До края на тaзи статия ще знаете какво представлява, как работи и как да я използвате ефективно.</p>
+
+<h2 id="какво-е-защитна-стена">
+  Какво е защитна стена?
+  
+  <a hidden class="anchor" href="#%d0%ba%d0%b0%d0%ba%d0%b2%d0%be-%d0%b5-%d0%b7%d0%b0%d1%89%d0%b8%d1%82%d0%bd%d0%b0-%d1%81%d1%82%d0%b5%d0%bd%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>Defender Firewall (защитна стена) е интегрирана система за защита, която е част от операционната система Windows. Тя служи за контролиране и управление на мрежовия трафик, който влиза и излиза от компютъра. Основната му цел е да осигури защита срещу нежелан достъп и зловредни атаки чрез блокиране на нерегламентиран трафик и разрешаване само на упълномощени връзки.</p>
+<p><a href="firewall1.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall1_hu12878469814138977491.png 330w,
+        /posts/firewall/firewall1_hu14986183995262060657.png 660w,
+        /posts/firewall/firewall1_hu4665682601860678149.png 1024w,
+        /posts/firewall/firewall1_hu15962810184200342078.png 2x"
+        src="/posts/firewall/firewall1_hu14986183995262060657.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 1</em></figcaption></figure>
+
+</a>
+</p>
+
+<h2 id="основни-функции-на-защитната-стена">
+  Основни функции на защитната стена
+  
+  <a hidden class="anchor" href="#%d0%be%d1%81%d0%bd%d0%be%d0%b2%d0%bd%d0%b8-%d1%84%d1%83%d0%bd%d0%ba%d1%86%d0%b8%d0%b8-%d0%bd%d0%b0-%d0%b7%d0%b0%d1%89%d0%b8%d1%82%d0%bd%d0%b0%d1%82%d0%b0-%d1%81%d1%82%d0%b5%d0%bd%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<ul>
+<li><strong>Филтриране на мрежовия трафик</strong>: Позволява или блокира достъпа до интернет и мрежови ресурси въз основа на зададени правила.</li>
+<li><strong>Контрол на приложенията</strong>: Може да ограничи достъпа на конкретни приложения до интернет или мрежата.</li>
+<li><strong>Предотвратяване на неупълномощен достъп</strong>: Защитава компютъра от хакери, вируси и друг зловреден софтуер, който може да се опита да осъществи достъп.</li>
+<li><strong>Персонализиране</strong>: Потребителите могат ръчно да създават и управляват правила за специфични програми, портове или мрежови протоколи.</li>
+<li><strong>Локални и публични мрежи</strong>: Защитната стена автоматично адаптира настройките си в зависимост от типа на мрежата (например домейн, частна или публична).</li>
+</ul>
+<p>Защитната стена е важен компонент за сигурността на вашата система и се препоръчва винаги да бъде включена. Освен това, в Windows тя работи в синхрон с други защитни системи, като Windows Defender, за да осигури цялостна защита.</p>
+
+<h2 id="принцип-на-работа">
+  Принцип на работа
+  
+  <a hidden class="anchor" href="#%d0%bf%d1%80%d0%b8%d0%bd%d1%86%d0%b8%d0%bf-%d0%bd%d0%b0-%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>Защитната стена функционира с комплект предварително създадени правила (входящи и изходящи). От Microsoft са подготвили 3 комплекта от правила в зависимост от средата (мрежата), в която се използва компютърът <em>(фиг. 3)</em> - <strong>domain</strong>, <strong>private</strong> и <strong>public</strong> network.</p>
+<p><a href="firewall2.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall2_hu8095884935876674732.png 330w,
+        /posts/firewall/firewall2_hu13920981959802981397.png 660w,
+        /posts/firewall/firewall2_hu1565401759520720481.png 1024w,
+        /posts/firewall/firewall2_hu700613793145196823.png 2x"
+        src="/posts/firewall/firewall2_hu13920981959802981397.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 2</em></figcaption></figure>
+
+</a>
+</p>
+<blockquote>
+<p><strong>ВАЖНО!</strong> Ако имате лаптоп и го използвате на различни места (работа, дом, кафе) е наложително да превключвате режимите на защитната стена <em>(фиг. 3)</em>.</p>
+</blockquote>
+<p>Най-бързият начин за превключване на типа на мрежата в Windows (между <strong>domain</strong>, <strong>private</strong> и <strong>public</strong>) зависи от това дали искате да го направите чрез графичния интерфейс или чрез команден ред. Ето двата метода:</p>
+
+<h3 id="метод-1-чрез-графичния-интерфейс">
+  Метод 1: Чрез графичния интерфейс
+  
+  <a hidden class="anchor" href="#%d0%bc%d0%b5%d1%82%d0%be%d0%b4-1-%d1%87%d1%80%d0%b5%d0%b7-%d0%b3%d1%80%d0%b0%d1%84%d0%b8%d1%87%d0%bd%d0%b8%d1%8f-%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d1%84%d0%b5%d0%b9%d1%81">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h3>
+<ol>
+<li>
+<p>Отваряне на настройките за мрежата:</p>
+<ul>
+<li>Натиснете <strong>Win + I</strong>, за да отворите „Settings“.</li>
+<li>Отидете на <strong>Network &amp; Internet</strong>.</li>
+<li>Изберете активната си мрежа (например „Ethernet“ или „Wi-Fi“).</li>
+</ul>
+</li>
+<li>
+<p>Промяна на типа мрежа:</p>
+<ul>
+<li>Ако сте в Wi-Fi мрежа, кликнете върху името на мрежата под „Wi-Fi“.</li>
+<li>Ако сте в Ethernet мрежа, кликнете върху „Ethernet“.</li>
+<li>Изберете „Private“ или „Public“ според вашите предпочитания.</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><strong>Забележка:</strong> „Domain“ е автоматично зададено от Windows, ако компютърът е свързан към Active Directory.</p>
+</blockquote>
+
+<h3 id="метод-2-чрез-powershell">
+  Метод 2: Чрез PowerShell
+  
+  <a hidden class="anchor" href="#%d0%bc%d0%b5%d1%82%d0%be%d0%b4-2-%d1%87%d1%80%d0%b5%d0%b7-powershell">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h3>
+<p>Ако предпочитате команден ред, използвайте PowerShell, за да промените типа на мрежата:</p>
+<ol>
+<li>
+<p>Отворете PowerShell с администраторски права:</p>
+<ul>
+<li>Натиснете <strong>Win + X</strong> и изберете <strong>Windows PowerShell (Admin)</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Проверете текущия тип мрежа:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#fabd2f">Get-NetConnectionProfile</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>Променете типа на мрежата:</strong></p>
+<ul>
+<li>За да смените на <strong>Private</strong>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#fabd2f">Set-NetConnectionProfile</span> -Name <span style="color:#b8bb26">&#34;Име на мрежата&#34;</span> -NetworkCategory Private
+</span></span></code></pre></div><ul>
+<li>За да смените на <strong>Public</strong>:</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#fabd2f">Set-NetConnectionProfile</span> -Name <span style="color:#b8bb26">&#34;Име на мрежата&#34;</span> -NetworkCategory Public
+</span></span></code></pre></div></li>
+</ol>
+<blockquote>
+<p><strong>Забележка:</strong> Заменете <code>Име на мрежата</code> с името на активната мрежа, което сте получили от <code>Get-NetConnectionProfile</code>.
+<strong>Препоръка:</strong> Ако често превключвате между типовете мрежи, препоръчваме да използвате <strong>PowerShell</strong>, тъй като това е най-бързият и ефективен начин без нужда от отваряне на много менюта.</p>
+</blockquote>
+<p><a href="firewall4.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall4_hu12251006448910886812.png 330w,
+        /posts/firewall/firewall4_hu10544498901986646913.png 660w,
+        /posts/firewall/firewall4_hu7216376848005964078.png 1024w,
+        /posts/firewall/firewall4_hu2599491547889101442.png 2x"
+        src="/posts/firewall/firewall4_hu10544498901986646913.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 3</em></figcaption></figure>
+
+</a>
+</p>
+
+<h2 id="работа-със-защитната-стена">
+  Работа със защитната стена
+  
+  <a hidden class="anchor" href="#%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%b0-%d1%81%d1%8a%d1%81-%d0%b7%d0%b0%d1%89%d0%b8%d1%82%d0%bd%d0%b0%d1%82%d0%b0-%d1%81%d1%82%d0%b5%d0%bd%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h2>
+<p>Когато стартираме програма за първи път на компютър с Windows и тя изисква достъп до интернет, Windows Firewall автоматично засича опита за свързване. На екрана се появява изскачащ прозорец с въпрос дали да позволим на програмата достъп до мрежата.</p>
+<p>Този прозорец дава възможност да изберем дали достъпът да бъде разрешен само за <strong>частни мрежи</strong> (например домашна или служебна мрежа) или за <strong>публични мрежи</strong> (като Wi-Fi в кафене). Ако изберем „Разреши достъп“ (Allow Access), програмата получава необходимите права за интернет връзка. Ако откажем достъп, програмата ще бъде блокирана от Firewall и няма да може да използва интернет.</p>
+<p>Този механизъм служи за защита на компютъра от потенциално опасен софтуер и неоторизиран достъп до мрежата.</p>
+<p><a href="firewall3.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall3_hu331419983296449536.png 330w,
+        /posts/firewall/firewall3_hu15020084548742400593.png 660w,
+        /posts/firewall/firewall3_hu11578264452191300158.png 1024w,
+        /posts/firewall/firewall3_hu9367861199448122576.png 2x"
+        src="/posts/firewall/firewall3_hu15020084548742400593.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 4</em></figcaption></figure>
+
+</a>
+</p>
+<p>Това е и първият ни досег със защитната стена, но да разгледаме как можем да променим настройките за вече настроена програма или да добавим правило за програма, която все още не сме стартирали.</p>
+
+<h3 id="методи-за-достигане-до-настройките-на-windows-firewall">
+  Методи за достигане до настройките на Windows Firewall
+  
+  <a hidden class="anchor" href="#%d0%bc%d0%b5%d1%82%d0%be%d0%b4%d0%b8-%d0%b7%d0%b0-%d0%b4%d0%be%d1%81%d1%82%d0%b8%d0%b3%d0%b0%d0%bd%d0%b5-%d0%b4%d0%be-%d0%bd%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b8%d1%82%d0%b5-%d0%bd%d0%b0-windows-firewall">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h3>
+<ol>
+<li><strong>Чрез търсачката в Start менюто</strong>:
+<ul>
+<li>Натиснете бутона <strong>Start</strong> (или клавиша Windows).</li>
+<li>Въведете &ldquo;Windows Firewall&rdquo; или &ldquo;Firewall &amp; network protection&rdquo;.</li>
+<li>Кликнете върху резултата „Firewall &amp; network protection“ (в новите версии на Windows) или „Windows Defender Firewall“ (в по-старите версии).</li>
+</ul>
+</li>
+<li><strong>Чрез Control Panel (Контролен панел)</strong>:
+<ul>
+<li>Натиснете клавишната комбинация <strong>Windows + R</strong>, въведете <code>control</code> и натиснете Enter.</li>
+<li>В Control Panel изберете <strong>System and Security</strong> → <strong>Windows Defender Firewall</strong>.</li>
+</ul>
+</li>
+<li><strong>Чрез приложението Settings (Настройки)</strong>:
+<ul>
+<li>Натиснете <strong>Windows + I</strong>, за да отворите приложението Settings.</li>
+<li>Отидете в <strong>Update &amp; Security</strong> → <strong>Windows Security</strong> → <strong>Firewall &amp; network protection</strong>.</li>
+</ul>
+</li>
+<li><strong>Чрез диалоговия прозорец Run (Стартиране)</strong>:
+<ul>
+<li>Натиснете <strong>Windows + R</strong>.</li>
+<li>Въведете <code>firewall.cpl</code> и натиснете Enter. Това ще ви отведе директно до настройките на Windows Firewall.</li>
+</ul>
+</li>
+<li><strong>Чрез иконата за защита в системния трей</strong>:
+<ul>
+<li>Кликнете върху иконата на щит (Windows Security) в системния трей (до часовника).</li>
+<li>Изберете <strong>Firewall &amp; network protection</strong> от менюто.</li>
+</ul>
+</li>
+</ol>
+<p>Всеки от тези методи предоставя бърз достъп до настройките на Windows Firewall за конфигуриране или преглед.</p>
+<p><a href="firewall4.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall4_hu12251006448910886812.png 330w,
+        /posts/firewall/firewall4_hu10544498901986646913.png 660w,
+        /posts/firewall/firewall4_hu7216376848005964078.png 1024w,
+        /posts/firewall/firewall4_hu2599491547889101442.png 2x"
+        src="/posts/firewall/firewall4_hu10544498901986646913.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 5</em></figcaption></figure>
+
+</a>
+</p>
+
+<h3 id="добавяне-на-нова-програма-или-редактиране-на-добавена-такава">
+  Добавяне на нова програма или редактиране на добавена такава
+  
+  <a hidden class="anchor" href="#%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d1%8f%d0%bd%d0%b5-%d0%bd%d0%b0-%d0%bd%d0%be%d0%b2%d0%b0-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%b0-%d0%b8%d0%bb%d0%b8-%d1%80%d0%b5%d0%b4%d0%b0%d0%ba%d1%82%d0%b8%d1%80%d0%b0%d0%bd%d0%b5-%d0%bd%d0%b0-%d0%b4%d0%be%d0%b1%d0%b0%d0%b2%d0%b5%d0%bd%d0%b0-%d1%82%d0%b0%d0%ba%d0%b0%d0%b2%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h3>
+<p>Опцията „Allow an app through firewall“ позволява на потребителя да даде разрешение на конкретни приложения или програми да комуникират през защитната стена (Firewall). Това е полезно, когато дадено приложение се нуждае от достъп до интернет или локалната мрежа, но е блокирано от защитната стена.</p>
+<p><a href="firewall5.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall5_hu15169790023748478734.png 330w,
+        /posts/firewall/firewall5_hu15624246675588579241.png 660w,
+        /posts/firewall/firewall5_hu16664138306463145856.png 1024w,
+        /posts/firewall/firewall5_hu2166376542434209105.png 2x"
+        src="/posts/firewall/firewall5_hu15624246675588579241.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 6</em></figcaption></figure>
+
+</a>
+</p>
+
+<h4 id="как-да-използваме-функцията">
+  Как да използваме функцията
+  
+  <a hidden class="anchor" href="#%d0%ba%d0%b0%d0%ba-%d0%b4%d0%b0-%d0%b8%d0%b7%d0%bf%d0%be%d0%bb%d0%b7%d0%b2%d0%b0%d0%bc%d0%b5-%d1%84%d1%83%d0%bd%d0%ba%d1%86%d0%b8%d1%8f%d1%82%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li><strong>Достъп до &ldquo;Allow an app through firewall&rdquo;:</strong>
+<ul>
+<li>Отворете <strong>Control Panel</strong> → <strong>System and Security</strong> → <strong>Windows Defender Firewall</strong>.</li>
+<li>Вляво кликнете върху <strong>Allow an app or feature through Windows Defender Firewall</strong>.</li>
+<li>В Windows 11 можете също да потърсите тази опция чрез търсачката в <strong>Start</strong> менюто.</li>
+</ul>
+</li>
+<li><strong>Преглед на разрешените приложения:</strong>
+<ul>
+<li>Ще се отвори списък с всички приложения и функции, които имат разрешение за достъп през защитната стена.</li>
+<li>Виждате две колони: <strong>Private</strong> (Частни мрежи) и <strong>Public</strong> (Публични мрежи), които указват за кои типове мрежи е позволен достъпът.</li>
+</ul>
+</li>
+<li><strong>Промяна на настройките:</strong>
+<ul>
+<li>Кликнете върху бутона <strong>Change settings</strong> (Изменение на настройките), за да получите права за редактиране. Това изисква администраторски достъп.</li>
+<li>Поставете или премахнете отметки за конкретно приложение:
+<ul>
+<li><strong>Private</strong> – Позволява достъп през домашни или служебни мрежи.</li>
+<li><strong>Public</strong> – Позволява достъп през обществени мрежи, като например Wi-Fi в кафене.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Добавяне на ново приложение:</strong>
+<ul>
+<li>Ако програмата, която искате да разрешите, не е в списъка, натиснете бутона <strong>Allow another app&hellip;</strong>.</li>
+<li>В изскачащия прозорец кликнете върху <strong>Browse&hellip;</strong>, намерете изпълнимия файл на приложението (.exe) и натиснете <strong>Add</strong>.</li>
+<li>След като добавите приложението, изберете за кои мрежи да бъде разрешен достъпът (Private и/или Public).</li>
+</ul>
+</li>
+<li><strong>Запазване на промените:</strong>
+<ul>
+<li>След като направите нужните настройки, натиснете <strong>OK</strong>, за да ги запазите.</li>
+</ul>
+</li>
+</ol>
+
+<h4 id="препоръки">
+  Препоръки
+  
+  <a hidden class="anchor" href="#%d0%bf%d1%80%d0%b5%d0%bf%d0%be%d1%80%d1%8a%d0%ba%d0%b8">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ul>
+<li><strong>Внимавайте какво разрешавате:</strong> Позволявайте достъп само на приложения, които познавате и на които имате доверие.</li>
+<li><strong>Публични мрежи:</strong> Бъдете особено внимателни с разрешаването на приложения за публични мрежи, тъй като това може да създаде риск за сигурността.</li>
+<li><strong>Отмяна на достъп:</strong> Ако забележите нежелана активност, върнете се в списъка и премахнете отметките за приложението.</li>
+</ul>
+<p>Тази функция е ключова за персонализиране на достъпа на приложенията до интернет и мрежите, като същевременно поддържа високо ниво на сигурност.</p>
+
+<h3 id="работа-с-windows-defender-firewall-with-advanced-security">
+  Работа с &ldquo;Windows Defender Firewall with Advanced Security&rdquo;
+  
+  <a hidden class="anchor" href="#%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%b0-%d1%81-windows-defender-firewall-with-advanced-security">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h3>
+<p>„Windows Defender Firewall with Advanced Security“ е усъвършенстван инструмент за управление на настройките на защитната стена. Той позволява прецизно конфигуриране на входящите и изходящите правила за трафик, както и допълнителни настройки за защита на мрежата. Този инструмент е подходящ за по-напреднали потребители и системни администратори.</p>
+<p><a href="firewall6.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall6_hu6427378974859207857.png 330w,
+        /posts/firewall/firewall6_hu11397805896093692557.png 660w,
+        /posts/firewall/firewall6_hu12535765108312208400.png 1024w,
+        /posts/firewall/firewall6_hu419312990472106032.png 2x"
+        src="/posts/firewall/firewall6_hu11397805896093692557.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 7</em></figcaption></figure>
+
+</a>
+</p>
+
+<h4 id="как-да-достъпите-advanced-security">
+  Как да достъпите &ldquo;Advanced Security&rdquo;
+  
+  <a hidden class="anchor" href="#%d0%ba%d0%b0%d0%ba-%d0%b4%d0%b0-%d0%b4%d0%be%d1%81%d1%82%d1%8a%d0%bf%d0%b8%d1%82%d0%b5-advanced-security">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li><strong>Чрез търсачката в Start менюто:</strong>
+<ul>
+<li>Въведете „Windows Defender Firewall with Advanced Security“ и изберете опцията от резултатите.</li>
+</ul>
+</li>
+<li><strong>Чрез Control Panel:</strong>
+<ul>
+<li>Отидете в <strong>Control Panel</strong> → <strong>System and Security</strong> → <strong>Windows Defender Firewall</strong>.</li>
+<li>Вляво кликнете върху <strong>Advanced settings</strong>.</li>
+</ul>
+</li>
+<li><strong>Чрез Run (Стартиране):</strong>
+<ul>
+<li>Натиснете <strong>Windows + R</strong>, въведете <code>wf.msc</code>, и натиснете Enter.</li>
+</ul>
+</li>
+</ol>
+
+<h4 id="основни-компоненти-и-функции">
+  Основни компоненти и функции
+  
+  <a hidden class="anchor" href="#%d0%be%d1%81%d0%bd%d0%be%d0%b2%d0%bd%d0%b8-%d0%ba%d0%be%d0%bc%d0%bf%d0%be%d0%bd%d0%b5%d0%bd%d1%82%d0%b8-%d0%b8-%d1%84%d1%83%d0%bd%d0%ba%d1%86%d0%b8%d0%b8">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li><strong>Inbound Rules (Входящи правила):</strong>
+Тези правила контролират входящия трафик към вашата система. Например, можете да разрешите или блокирате достъп до конкретни портове, IP адреси или приложения.
+<ul>
+<li><strong>Пример:</strong> Разрешаване на входящия трафик за уеб сървър на порт 80.</li>
+</ul>
+</li>
+<li><strong>Outbound Rules (Изходящи правила):</strong>
+Те управляват изходящия трафик от вашата система. Това е полезно, ако искате да ограничите дадено приложение да изпраща данни в интернет.
+<ul>
+<li><strong>Пример:</strong> Блокиране на дадена програма да осъществява интернет връзка.</li>
+</ul>
+</li>
+</ol>
+<p><a href="firewall7.png">
+
+
+
+
+
+
+
+
+
+
+
+<figure>
+
+
+
+  
+  
+  
+
+  
+    <img loading="lazy" 
+    
+      
+        srcset="
+        /posts/firewall/firewall7_hu12109468561011086299.png 330w,
+        /posts/firewall/firewall7_hu7906125167755651418.png 660w,
+        /posts/firewall/firewall7_hu13966240801345133147.png 1024w,
+        /posts/firewall/firewall7_hu13185955101030936515.png 2x"
+        src="/posts/firewall/firewall7_hu7906125167755651418.png"
+      
+    
+      alt="" />
+  
+
+
+<figcaption><span class="icon">
+  
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+
+</span>
+<em>фиг. 8</em></figcaption></figure>
+
+</a>
+</p>
+<ol start="3">
+<li><strong>Connection Security Rules (Правила за сигурност на връзката):</strong>
+Тези правила се използват за защита на мрежовите връзки чрез методи като IPsec (шифроване и удостоверяване). Това е подходящо за създаване на защитени комуникации между устройства.
+<ul>
+<li><strong>Пример:</strong> Настройване на криптирана връзка между два сървъра.</li>
+</ul>
+</li>
+<li><strong>Monitoring (Мониторинг):</strong>
+Тази секция ви позволява да преглеждате активните правила, текущи връзки и активност на защитната стена в реално време.</li>
+</ol>
+
+<h4 id="създаване-на-ново-правило">
+  Създаване на ново правило
+  
+  <a hidden class="anchor" href="#%d1%81%d1%8a%d0%b7%d0%b4%d0%b0%d0%b2%d0%b0%d0%bd%d0%b5-%d0%bd%d0%b0-%d0%bd%d0%be%d0%b2%d0%be-%d0%bf%d1%80%d0%b0%d0%b2%d0%b8%d0%bb%d0%be">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li><strong>Отидете в секцията „Inbound Rules“ или „Outbound Rules“.</strong></li>
+<li>Кликнете върху <strong>New Rule&hellip;</strong> в дясната част на прозореца.</li>
+<li>Изберете типа на правилото:
+<ul>
+<li><strong>Program:</strong> Ограничете или разрешете достъп за конкретна програма.</li>
+<li><strong>Port:</strong> Контролирайте трафик през определен порт или протокол (TCP/UDP).</li>
+<li><strong>Predefined:</strong> Изберете предварително дефинирано правило за често срещани услуги (напр. File and Printer Sharing).</li>
+<li><strong>Custom:</strong> Създайте персонализирано правило за конкретни параметри като IP адреси, портове, протоколи и др.</li>
+</ul>
+</li>
+<li>Следвайте стъпките в съветника, за да настроите правилото.</li>
+<li>Завършете процеса, като натиснете <strong>Finish</strong>.</li>
+</ol>
+
+<h4 id="примери-за-случаи-на-употреба">
+  Примери за случаи на употреба
+  
+  <a hidden class="anchor" href="#%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d1%80%d0%b8-%d0%b7%d0%b0-%d1%81%d0%bb%d1%83%d1%87%d0%b0%d0%b8-%d0%bd%d0%b0-%d1%83%d0%bf%d0%be%d1%82%d1%80%d0%b5%d0%b1%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li>
+<p><strong>Блокиране на програма:</strong></p>
+<ul>
+<li>Създайте <strong>Outbound Rule</strong>, изберете програмата и задайте „Block the connection“.</li>
+</ul>
+</li>
+<li>
+<p><strong>Разрешаване на достъп до порт 443:</strong></p>
+<ul>
+<li>Създайте <strong>Inbound Rule</strong>, изберете „Port“, задайте TCP порт 443 и разрешете връзката.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ограничаване на IP адреси:</strong></p>
+<ul>
+<li>Създайте <strong>Custom Rule</strong>, задайте конкретни IP адреси в секцията „Scope“.</li>
+</ul>
+</li>
+</ol>
+
+<h4 id="препоръки-при-създаването-на-правила">
+  Препоръки при създаването на правила
+  
+  <a hidden class="anchor" href="#%d0%bf%d1%80%d0%b5%d0%bf%d0%be%d1%80%d1%8a%d0%ba%d0%b8-%d0%bf%d1%80%d0%b8-%d1%81%d1%8a%d0%b7%d0%b4%d0%b0%d0%b2%d0%b0%d0%bd%d0%b5%d1%82%d0%be-%d0%bd%d0%b0-%d0%bf%d1%80%d0%b0%d0%b2%d0%b8%d0%bb%d0%b0">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ul>
+<li><strong>Бъдете внимателни:</strong> Не блокирайте важни системни услуги, тъй като това може да доведе до проблеми с мрежовата свързаност.</li>
+<li><strong>Тествайте промените:</strong> След като създадете или редактирате правило, проверете дали мрежовите функции работят според очакванията.</li>
+<li><strong>Използвайте IPsec за защита:</strong> За чувствителни данни настройте правила с криптиране за връзките.</li>
+</ul>
+<p>„Windows Defender Firewall with Advanced Security“ е мощен инструмент, който осигурява по-добър контрол върху мрежовия трафик и защита на вашата система.</p>
+
+<h3 id="възстановяване-на-настройките-на-windows-firewall">
+  Възстановяване на настройките на Windows Firewall
+  
+  <a hidden class="anchor" href="#%d0%b2%d1%8a%d0%b7%d1%81%d1%82%d0%b0%d0%bd%d0%be%d0%b2%d1%8f%d0%b2%d0%b0%d0%bd%d0%b5-%d0%bd%d0%b0-%d0%bd%d0%b0%d1%81%d1%82%d1%80%d0%be%d0%b9%d0%ba%d0%b8%d1%82%d0%b5-%d0%bd%d0%b0-windows-firewall">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h3>
+<p>Ако нещо се обърка с настройките на защитната стена (Windows Firewall), можете лесно да ги върнете към първоначалното им състояние. Това ще премахне всички персонализирани правила и ще възстанови фабричните настройки.</p>
+
+<h4 id="метод-1-чрез-графичния-интерфейс-на-windows-firewall">
+  Метод 1: Чрез графичния интерфейс на Windows Firewall
+  
+  <a hidden class="anchor" href="#%d0%bc%d0%b5%d1%82%d0%be%d0%b4-1-%d1%87%d1%80%d0%b5%d0%b7-%d0%b3%d1%80%d0%b0%d1%84%d0%b8%d1%87%d0%bd%d0%b8%d1%8f-%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d1%84%d0%b5%d0%b9%d1%81-%d0%bd%d0%b0-windows-firewall">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li>
+<p><strong>Отворете Windows Firewall:</strong></p>
+<ul>
+<li>Отидете в <strong>Control Panel</strong> → <strong>System and Security</strong> → <strong>Windows Defender Firewall</strong>.</li>
+<li>Вляво изберете <strong>Restore defaults</strong> (Възстановяване на настройките по подразбиране).</li>
+</ul>
+</li>
+<li>
+<p><strong>Възстановяване на настройките:</strong></p>
+<ul>
+<li>Кликнете върху бутона <strong>Restore defaults</strong>.</li>
+<li>Ще се появи предупреждение, че всички съществуващи правила ще бъдат премахнати.</li>
+<li>Потвърдете действието, като натиснете <strong>Yes</strong>.</li>
+</ul>
+</li>
+</ol>
+
+<h4 id="метод-2-чрез-advanced-security">
+  Метод 2: Чрез „Advanced Security“
+  
+  <a hidden class="anchor" href="#%d0%bc%d0%b5%d1%82%d0%be%d0%b4-2-%d1%87%d1%80%d0%b5%d0%b7-advanced-security">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li>
+<p><strong>Отворете &ldquo;Windows Defender Firewall with Advanced Security&rdquo;:</strong></p>
+<ul>
+<li>Натиснете <strong>Windows + R</strong>, въведете <code>wf.msc</code> и натиснете Enter.</li>
+</ul>
+</li>
+<li>
+<p><strong>Възстановяване на настройките:</strong></p>
+<ul>
+<li>В прозореца вдясно, изберете <strong>Restore Default Policy</strong>.</li>
+<li>Потвърдете действието, когато се появи предупредително съобщение.</li>
+</ul>
+</li>
+</ol>
+
+<h4 id="метод-3-чрез-powershell">
+  Метод 3: Чрез PowerShell
+  
+  <a hidden class="anchor" href="#%d0%bc%d0%b5%d1%82%d0%be%d0%b4-3-%d1%87%d1%80%d0%b5%d0%b7-powershell">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li>
+<p><strong>Отворете PowerShell като администратор:</strong></p>
+<ul>
+<li>Натиснете <strong>Windows + X</strong> и изберете <strong>Windows PowerShell (Admin)</strong>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Изпълнете командата:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#ebdbb2;background-color:#282828;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#fabd2f">New-NetFirewallRule</span> -All -Action Allow
+</span></span><span style="display:flex;"><span><span style="color:#fabd2f">Remove-NetFirewallRule</span> -All
+</span></span></code></pre></div><ul>
+<li>Това ще изтрие всички съществуващи правила и ще създаде основен набор от разрешения.</li>
+</ul>
+</li>
+</ol>
+
+<h4 id="какво-се-случва-след-възстановяване">
+  Какво се случва след възстановяване
+  
+  <a hidden class="anchor" href="#%d0%ba%d0%b0%d0%ba%d0%b2%d0%be-%d1%81%d0%b5-%d1%81%d0%bb%d1%83%d1%87%d0%b2%d0%b0-%d1%81%d0%bb%d0%b5%d0%b4-%d0%b2%d1%8a%d0%b7%d1%81%d1%82%d0%b0%d0%bd%d0%be%d0%b2%d1%8f%d0%b2%d0%b0%d0%bd%d0%b5">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ul>
+<li>Всички персонализирани входящи и изходящи правила ще бъдат изтрити.</li>
+<li>Настройките за свързаност ще се върнат към фабричните стойности.</li>
+<li>Програмите и услугите ще трябва отново да поискат достъп през защитната стена, когато е необходимо.</li>
+</ul>
+
+<h4 id="препоръки-след-възстановяване">
+  Препоръки след възстановяване
+  
+  <a hidden class="anchor" href="#%d0%bf%d1%80%d0%b5%d0%bf%d0%be%d1%80%d1%8a%d0%ba%d0%b8-%d1%81%d0%bb%d0%b5%d0%b4-%d0%b2%d1%8a%d0%b7%d1%81%d1%82%d0%b0%d0%bd%d0%be%d0%b2%d1%8f%d0%b2%d0%b0%d0%bd%d0%b5">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
+
+
+ </a>
+  
+</h4>
+<ol>
+<li><strong>Проверете важните приложения:</strong> Уверете се, че основните програми, които използват мрежа, имат разрешение за достъп.</li>
+<li><strong>Създайте резервно копие:</strong> Ако настройвате правила често, използвайте опцията за експортиране на настройки, преди да направите значителни промени.</li>
+<li><strong>Актуализирайте настройките според нуждите:</strong> След възстановяването, добавете само необходимите изключения и правила за сигурност.</li>
+</ol>
+<p>Възстановяването на настройките на Windows Firewall е бърз и ефективен начин да решите проблеми, свързани със свързаността или неправилна конфигурация.</p>
+
+
+
+
+
+
+
+
+
+
+
+<nav class="pagenav">
+  
+  <div></div>
+  
+  
+    <a class="next" href="/posts/prnerr11b/">
+      <span class="direction">Следваща публикация »</span>
+      <br>
+      <span> Как да отстраните грешка 0x0000011b при свързване към споделен принтер в Windows </span>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+
+
+      </main>
+      <footer>
+  <div class="copyright">
+     © 2025  cursor.bg 
+  </div>
+  
+  <div class="attribution">
+    Създадено с <a href="https://gohugo.io" target="_blank">Hugo</a> и <a href="https://github.com/mnjm/kayal" target="_blank">Kayal</a>
+  </div>
+  
+</footer>
+
+    </div>
+  </body>
+</html>

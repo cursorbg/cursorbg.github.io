@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>0x0000011b on cursor.bg</title>
+    <link>http://localhost:1313/tags/0x0000011b/</link>
+    <description>Recent content in 0x0000011b on cursor.bg</description>
+    <generator>Hugo -- 0.140.0-DEV</generator>
+    <language>bg-bg</language>
+    <lastBuildDate>Wed, 29 Jan 2025 13:35:19 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/0x0000011b/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Как да отстраните грешка 0x0000011b при свързване към споделен принтер в Windows</title>
+      <link>http://localhost:1313/posts/prnerr11b/</link>
+      <pubDate>Wed, 29 Jan 2025 13:35:19 +0200</pubDate>
+      <guid>http://localhost:1313/posts/prnerr11b/</guid>
+      <description>Грешката 0x0000011b често се появява при опит за свързване към споделен принтер в Windows, особено след скорошни актуализации на операционната система.</description>
+    </item>
+  </channel>
+</rss>

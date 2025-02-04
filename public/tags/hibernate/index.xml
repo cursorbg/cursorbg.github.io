@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hibernate on cursor.bg</title>
+    <link>http://localhost:1313/tags/hibernate/</link>
+    <description>Recent content in Hibernate on cursor.bg</description>
+    <generator>Hugo -- 0.140.0-DEV</generator>
+    <language>bg-bg</language>
+    <lastBuildDate>Thu, 16 Jan 2025 15:02:19 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/hibernate/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Power &amp; Sleep в Windows 10: Управление на енергийни настройки за начинаещи</title>
+      <link>http://localhost:1313/posts/powercfg/</link>
+      <pubDate>Thu, 16 Jan 2025 15:02:19 +0200</pubDate>
+      <guid>http://localhost:1313/posts/powercfg/</guid>
+      <description>Управлението на енергийните настройки в Windows е важен аспект от поддържането на оптимална производителност на вашия компютър.</description>
+    </item>
+  </channel>
+</rss>
