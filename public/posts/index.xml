@@ -2,45 +2,80 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Всички постове on cursor.bg</title>
-    <link>http://192.168.0.32:1313/posts/</link>
+    <link>http://localhost:1313/posts/</link>
     <description>Recent content in Всички постове on cursor.bg</description>
     <generator>Hugo -- 0.140.0-DEV</generator>
     <language>bg-bg</language>
-    <lastBuildDate>Thu, 05 Dec 2024 09:47:09 +0200</lastBuildDate>
-    <atom:link href="http://192.168.0.32:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 04 Feb 2025 15:30:19 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Какво е защитна стена и какво трябва да знаем за нея?</title>
+      <link>http://localhost:1313/posts/firewall/</link>
+      <pubDate>Tue, 04 Feb 2025 15:30:19 +0200</pubDate>
+      <guid>http://localhost:1313/posts/firewall/</guid>
+      <description>Основи на компютърните мрежи. Защитна стена.</description>
+    </item>
+    <item>
+      <title>Как да отстраните грешка 0x0000011b при свързване към споделен принтер в Windows</title>
+      <link>http://localhost:1313/posts/prnerr11b/</link>
+      <pubDate>Wed, 29 Jan 2025 13:35:19 +0200</pubDate>
+      <guid>http://localhost:1313/posts/prnerr11b/</guid>
+      <description>Грешката 0x0000011b често се появява при опит за свързване към споделен принтер в Windows, особено след скорошни актуализации на операционната система.</description>
+    </item>
+    <item>
+      <title>Поправка на грешка 0x00000709 при свързване към споделен принтер в Windows 11</title>
+      <link>http://localhost:1313/posts/prnerr/</link>
+      <pubDate>Fri, 17 Jan 2025 16:22:19 +0200</pubDate>
+      <guid>http://localhost:1313/posts/prnerr/</guid>
+      <description>Остраняване на проблем при свързване от Windows 11 към споделен принтер с Windows 10.</description>
+    </item>
+    <item>
+      <title>Power &amp; Sleep в Windows 10: Управление на енергийни настройки за начинаещи</title>
+      <link>http://localhost:1313/posts/powercfg/</link>
+      <pubDate>Thu, 16 Jan 2025 15:02:19 +0200</pubDate>
+      <guid>http://localhost:1313/posts/powercfg/</guid>
+      <description>Управлението на енергийните настройки в Windows е важен аспект от поддържането на оптимална производителност на вашия компютър.</description>
+    </item>
+    <item>
+      <title>Скрити папки в Windows – какво представляват и как да ги използвате?</title>
+      <link>http://localhost:1313/posts/hidden-folders/</link>
+      <pubDate>Wed, 15 Jan 2025 13:32:19 +0200</pubDate>
+      <guid>http://localhost:1313/posts/hidden-folders/</guid>
+      <description>Основи на работа с Windows - скрити папки</description>
+    </item>
     <item>
       <title>IPv4 или как да се ориентираме в собствената мрежа.</title>
-      <link>http://192.168.0.32:1313/posts/ipv4/</link>
+      <link>http://localhost:1313/posts/ipv4/</link>
       <pubDate>Thu, 05 Dec 2024 09:47:09 +0200</pubDate>
-      <guid>http://192.168.0.32:1313/posts/ipv4/</guid>
+      <guid>http://localhost:1313/posts/ipv4/</guid>
       <description>Основи на компютърните мрежи</description>
     </item>
     <item>
       <title>Полезни Клавишни Комбинации (за Windows, Текст или Браузър)</title>
-      <link>http://192.168.0.32:1313/posts/shortcuts/</link>
+      <link>http://localhost:1313/posts/shortcuts/</link>
       <pubDate>Thu, 14 Nov 2024 16:12:45 +0200</pubDate>
-      <guid>http://192.168.0.32:1313/posts/shortcuts/</guid>
+      <guid>http://localhost:1313/posts/shortcuts/</guid>
       <description>Съкратен списък на клавишни комбинации.</description>
     </item>
     <item>
       <title>Спасете данните си с тази програма!</title>
-      <link>http://192.168.0.32:1313/posts/parchive/</link>
+      <link>http://localhost:1313/posts/parchive/</link>
       <pubDate>Tue, 12 Nov 2024 16:12:45 +0200</pubDate>
-      <guid>http://192.168.0.32:1313/posts/parchive/</guid>
+      <guid>http://localhost:1313/posts/parchive/</guid>
       <description>Parchive (Par или Parity Archive) е файлов формат за възстановяване на данни, използван за поправка на повредени или липсващи файлове.</description>
     </item>
     <item>
       <title>Принтерът блокира! (Скрипт за Print Spooler)</title>
-      <link>http://192.168.0.32:1313/posts/spooler-restart/</link>
+      <link>http://localhost:1313/posts/spooler-restart/</link>
       <pubDate>Mon, 28 Oct 2024 16:11:45 +0200</pubDate>
-      <guid>http://192.168.0.32:1313/posts/spooler-restart/</guid>
+      <guid>http://localhost:1313/posts/spooler-restart/</guid>
       <description>Управлението на услугата &ldquo;Print Spooler&rdquo; е от съществено значение за администрацията на печатни услуги, тъй като спулерът осигурява правилното опашково разпределение и обработка на печатните задачи.</description>
     </item>
     <item>
       <title>Как да получавате известия при високо натоварване на процесора?</title>
-      <link>http://192.168.0.32:1313/posts/cpu-usage-mon/</link>
+      <link>http://localhost:1313/posts/cpu-usage-mon/</link>
       <pubDate>Mon, 28 Oct 2024 16:11:31 +0200</pubDate>
-      <guid>http://192.168.0.32:1313/posts/cpu-usage-mon/</guid>
+      <guid>http://localhost:1313/posts/cpu-usage-mon/</guid>
       <description>Колко често се е случвало компютъра да Ви се забавя ужасно?</description>
     </item>
   </channel>
