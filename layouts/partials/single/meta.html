@@ -4,33 +4,40 @@
 {{ $showReadingTime := .Params.showReadingTime | default (.Site.Params.article.showReadingTime | default true) }}
 
 <p>
-{{/* Author */}}
+{{/* Автор */}}
 {{ with .Params.author }}
   <span>От {{ . }} · </span>
 {{ end }}
 
-{{/* Date Reading time and Draft label */}}
+{{/* Дата на публикуване */}}
 {{ if $showDate }}
   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateHuman := .Date | time.Format "Jan 2, 2006" }}
+  {{ $dateHuman := .Date | time.Format "2 January 2006" }}
+
   <span class="meta-icon">{{ partial "icon.html" "calender" }}</span>
-  Публикувано на <time datetime="{{ $dateMachine }}">{{ $dateHuman }}</time>
+  Публикувано на <time datetime="{{ $dateMachine }}">{{ $dateHuman }} г.</time>
+
   {{ $dateModMachine := .Lastmod | time.Format "2006-01-02T15:04:05-07:00" }}
-  {{ $dateModHuman := .Lastmod | time.Format "Jan 2, 2006" }}
+  {{ $dateModHuman := .Lastmod | time.Format "2 January 2006" }}
+
   {{ if and $showModDate (ne $dateModHuman $dateHuman) }}
     <span class="meta-icon">{{ partial "icon.html" "pencil" }}</span>
-    Last edited <time datetime="{{ $dateModMachine }}">{{ $dateModHuman }}</time>
+    Последна редакция:
+    <time datetime="{{ $dateModMachine }}">{{ $dateModHuman }} г.</time>
   {{ end }}
 {{ end }}
+
+{{/* Време за четене */}}
 {{ if $showReadingTime }}
   <span class="meta-icon">{{ partial "icon.html" "time" }}</span>
-  {{ if gt .ReadingTime 1 }}
-    {{ printf "%s mins" (.ReadingTime | markdownify) }}
-  {{ else }}
-    {{ printf "%s min" (.ReadingTime | markdownify) }}
-  {{ end }}
-{{ end}}
+  {{ .ReadingTime }} мин. четене
+{{ end }}
+
+{{/* Чернова */}}
 {{ if .Draft }}
-  <span class="draft-lbl"><span class="meta-icon">{{ partial "icon.html" "edit" }}</span>ЧЕРНОВА</span>
+  <span class="draft-lbl">
+    <span class="meta-icon">{{ partial "icon.html" "edit" }}</span>
+    ЧЕРНОВА
+  </span>
 {{ end }}
 </p>
