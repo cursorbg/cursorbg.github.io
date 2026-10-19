@@ -52,7 +52,7 @@ collections:
         required: false
 
       - label: "Основна снимка"
-        name: "image"
+        name: "coverImg"
         widget: "image"
         required: false
 
