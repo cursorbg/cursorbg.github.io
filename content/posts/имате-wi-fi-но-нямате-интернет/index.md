@@ -1,6 +1,7 @@
 +++
 title = "Имате Wi-Fi, но нямате интернет?"
 date = "2026-10-19T16:46:00.000+03:00"
+author = "4s"
 draft = true
 coverImg = "main.png"
 +++
