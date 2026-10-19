@@ -21,7 +21,7 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
-    format: "toml"
+    format: "toml-frontmatter"
     extension: "md"
 
     media_folder: ""
