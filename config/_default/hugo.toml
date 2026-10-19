@@ -5,6 +5,7 @@ baseURL = "http://cursor.bg/"
 
 # Site's language code
 languageCode = 'bg-bg'
+defaultContentLanguage = "bg"
 
 title = "cursor.bg"
 
