@@ -15,3 +15,8 @@ coverImg = "matrix3.jpg"
 
 Това е тест за публикуване на статии в Hugo.
 
+```ini
+[main]
+information = "false"
+```
+
