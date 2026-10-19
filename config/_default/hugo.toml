@@ -23,9 +23,9 @@ enableRobotsTXT = true
 # Length of default summaries.
 summaryLength = 0
 
-# Build drafts during site generation.
+# Don't publish unfinished articles.
 buildDrafts = false
-# Build pages with future dates during site generation.
+# Don't publish articles dated in the future.
 buildFuture = false
 
 # The types of outputs to generate for the homepage.
