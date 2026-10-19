@@ -1,8 +1,12 @@
 
+
 backend:
   name: github
   repo: cursorbg/cursorbg.github.io
   branch: main
+  base_url: https://cursor-cms-auth.tridentsdomains.workers.dev
+  auth_endpoint: auth
+
 
 locale: bg
 
