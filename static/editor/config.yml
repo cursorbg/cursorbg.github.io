@@ -1,12 +1,10 @@
 
-
 backend:
   name: github
   repo: cursorbg/cursorbg.github.io
   branch: main
   base_url: https://cursor-cms-auth.tridentsdomains.workers.dev
   auth_endpoint: auth
-
 
 locale: bg
 
@@ -27,7 +25,7 @@ collections:
     media_folder: ""
     public_folder: ""
 
-    fields:      
+    fields:
       - label: "Заглавие"
         name: "title"
         widget: "string"
@@ -35,6 +33,15 @@ collections:
       - label: "Дата"
         name: "date"
         widget: "datetime"
+
+      - label: "Автор"
+        name: "author"
+        widget: "select"
+        options:
+          - "4s"
+          - "[cc]"
+        default: "4s"
+        required: true
 
       - label: "Чернова"
         name: "draft"
