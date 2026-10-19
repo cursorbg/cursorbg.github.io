@@ -1,0 +1,57 @@
+
+backend:
+  name: github
+  repo: cursorbg/cursorbg.github.io
+  branch: main
+
+locale: bg
+
+media_folder: "static/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "posts"
+    label: "Статии"
+    label_singular: "Статия"
+    folder: "content/posts"
+    create: true
+    slug: "{{slug}}"
+    path: "{{slug}}/index"
+    format: "toml"
+    extension: "md"
+
+    media_folder: ""
+    public_folder: ""
+
+    fields:
+      - label: "Заглавие"
+        name: "title"
+        widget: "string"
+
+      - label: "Дата"
+        name: "date"
+        widget: "datetime"
+
+      - label: "Чернова"
+        name: "draft"
+        widget: "boolean"
+        default: false
+
+      - label: "Описание"
+        name: "description"
+        widget: "text"
+        required: false
+
+      - label: "Тагове"
+        name: "tags"
+        widget: "list"
+        required: false
+
+      - label: "Основна снимка"
+        name: "image"
+        widget: "image"
+        required: false
+
+      - label: "Съдържание"
+        name: "body"
+        widget: "markdown"
