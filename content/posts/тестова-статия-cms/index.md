@@ -1,7 +1,7 @@
 +++
 title = "Тестова статия CMS"
 date = "2026-10-19T14:33:00.000+03:00"
-draft = true
+draft = false
 description = "Проверка на публикуването през Decap CMS"
 tags = ["test"]
 coverImg = "matrix3.jpg"
