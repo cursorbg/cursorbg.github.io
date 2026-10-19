@@ -28,6 +28,15 @@ collections:
     public_folder: ""
 
     fields:
+    - label: "Автор"
+      name: "author"
+      widget: "select"
+      options:
+    - "4s"
+    - "[cc]"
+      default: "4s"
+      required: true
+      
       - label: "Заглавие"
         name: "title"
         widget: "string"
