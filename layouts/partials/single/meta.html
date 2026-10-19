@@ -1,8 +1,14 @@
+
 {{ $showDate := .Params.showDate | default (.Site.Params.article.showDate | default true) }}
 {{ $showModDate := .Params.showModDate | default (.Site.Params.article.showModDate | default false) }}
 {{ $showReadingTime := .Params.showReadingTime | default (.Site.Params.article.showReadingTime | default true) }}
 
 <p>
+{{/* Author */}}
+{{ with .Params.author }}
+  <span>От {{ . }} · </span>
+{{ end }}
+
 {{/* Date Reading time and Draft label */}}
 {{ if $showDate }}
   {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
