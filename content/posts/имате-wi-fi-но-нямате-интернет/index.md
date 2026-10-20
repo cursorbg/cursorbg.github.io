@@ -45,6 +45,12 @@ coverImg = "main.png"
 
 **Settings → Network & Internet → Wi-Fi → Manage known networks**
 
+
+
+![](wifi-screenshot.png)
+
+
+
 Намерете вашата мрежа и натиснете **Forget (Забрави)**.
 
 След това се свържете отново и въведете паролата за Wi-Fi. Уверете се, че я знаете, преди да премахнете мрежата.
