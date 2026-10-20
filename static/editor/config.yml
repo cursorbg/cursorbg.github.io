@@ -23,7 +23,7 @@ collections:
     create: true
     slug: "{{slug}}"
     path: "{{slug}}/index"
-    preview_path: "posts/{{slug}}/"
+    preview_path: "posts/{{dirname}}/"
     format: "toml-frontmatter"
     extension: "md"
 
