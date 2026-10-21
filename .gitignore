@@ -1,0 +1,27 @@
+# ---> Hugo
+# Generated files by hugo
+/public/
+/resources/_gen/
+/assets/jsconfig.json
+hugo_stats.json
+
+# Executable may be added to repository
+hugo.exe
+hugo.darwin
+hugo.linux
+
+# Temporary lock file while building
+/.hugo_build.lock
+
+# vscode related
+.vscode/
+.crossnote/
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Node (the workflow runs npm ci if a lockfile appears)
+node_modules/
