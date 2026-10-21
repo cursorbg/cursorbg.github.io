@@ -3,28 +3,29 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cursor BG - Editor</title>
 
   <style>
-    /* Floating CMS shortcuts */
     #cms-shortcuts {
       position: fixed;
       bottom: 20px;
       right: 20px;
       z-index: 1000;
-      display: flex;
+      display: none;
       gap: 8px;
       flex-wrap: wrap;
       justify-content: flex-end;
       max-width: calc(100vw - 40px);
     }
 
+    #cms-shortcuts.visible {
+      display: flex;
+    }
+
     #cms-shortcuts a {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
       padding: 10px 14px;
       border-radius: 8px;
       background: #263238;
@@ -80,6 +81,58 @@
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <script>
+    const shortcuts = document.getElementById("cms-shortcuts");
+
+    function updateShortcuts() {
+      const cmsRoot = document.getElementById("nc-root");
+
+      if (!cmsRoot) {
+        shortcuts.classList.remove("visible");
+        return;
+      }
+
+      const text = cmsRoot.innerText || "";
+
+      const loggedIn =
+        text.includes("Колекции") ||
+        text.includes("Публикувай") ||
+        text.includes("Публикуван") ||
+        text.includes("Collections") ||
+        text.includes("Publish");
+
+      const loginScreen =
+        text.includes("Login with GitHub") ||
+        text.includes("Вход с GitHub") ||
+        text.includes("Login with Github");
+
+      shortcuts.classList.toggle(
+        "visible",
+        loggedIn && !loginScreen
+      );
+    }
+
+    let pending = false;
+
+    const observer = new MutationObserver(() => {
+      if (pending) return;
+      pending = true;
+
+      requestAnimationFrame(() => {
+        pending = false;
+        updateShortcuts();
+      });
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+      characterData: true
+    });
+
+    updateShortcuts();
+  </script>
 
 </body>
 </html>
