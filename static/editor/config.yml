@@ -44,7 +44,7 @@ collections:
         widget: "select"
         options:
           - "4s"
-          - "[cc]"
+          - "mos"
         default: "4s"
         required: true
 
