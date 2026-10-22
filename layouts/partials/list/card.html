@@ -1,0 +1,38 @@
+
+{{ $showDate := .showDate }}
+{{ $lvl := .lvl }}
+
+{{ with .page }}
+<li style="display: flow-root;">
+
+    {{ with .Params.coverImg }}
+        {{ $image := $.page.Resources.GetMatch . }}
+        {{ with $image }}
+            {{ $thumb := .Fill "240x160 webp" }}
+            <a href="{{ $.page.RelPermalink }}">
+                <img
+                    src="{{ $thumb.RelPermalink }}"
+                    alt="{{ $.page.Title }}"
+                    loading="lazy"
+                    style="width: 150px; height: 100px;
+                           object-fit: cover; float: left;
+                           margin: 0 16px 8px 0;
+                           border-radius: 6px;">
+            </a>
+        {{ end }}
+    {{ end }}
+
+    <h{{$lvl}}>
+    {{ with .Params.externalUrl }}
+        <a href="{{ . }}" target="_blank" rel="external">
+    {{ else }}
+        <a href="{{ .RelPermalink }}">
+    {{ end }}
+    {{ .LinkTitle | emojify }}</a>
+    </h{{$lvl}}>
+
+    {{ partial "single/meta.html" . }}
+    {{ template "partials/home/pg-desc.html" . }}
+
+</li>
+{{ end }}
