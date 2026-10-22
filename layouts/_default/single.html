@@ -17,10 +17,12 @@
 {{/* Table of contents */}}
 {{ partial "single/toc.html" . }}
 
-{{/* Cover image below table of contents */}}
+{{/* Cover image with spacing */}}
 {{ with .Params.coverImg }}
-  {{ $imgData := dict "Page" $ "URL" . "Alt" $.Title "Style" "cover-img" }}
-  {{ partial "image-renderer.html" $imgData }}
+  <div style="margin-top: 16px; margin-bottom: 20px;">
+    {{ $imgData := dict "Page" $ "URL" . "Alt" $.Title "Style" "cover-img" }}
+    {{ partial "image-renderer.html" $imgData }}
+  </div>
 {{ end }}
 
 {{/* Article content */}}
