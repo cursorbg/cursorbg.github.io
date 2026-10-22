@@ -4,7 +4,6 @@ draft = false
 hidden = false
 title = 'Какво е защитна стена и какво трябва да знаем за нея?'
 tags = ['firewall','tcp','udp','ports']
-summary = 'Основи на компютърните мрежи. Защитна стена.'
 +++
 <span>{{< youtube dpw4RkI9054 >}}</span>
 
