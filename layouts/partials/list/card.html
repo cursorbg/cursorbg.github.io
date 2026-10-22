@@ -56,7 +56,14 @@
     </h{{$lvl}}>
 
     {{ partial "single/meta.html" . }}
-    {{ template "partials/home/pg-desc.html" . }}
+
+    {{/* Short, clean article summary */}}
+    <div class="description"
+         style="max-height: 4.5em;
+                overflow: hidden;
+                line-height: 1.5;">
+        {{ .Summary | plainify | truncate 165 }}
+    </div>
 
 </li>
 {{ end }}
