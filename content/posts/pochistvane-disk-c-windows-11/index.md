@@ -88,6 +88,8 @@ tags = ["Windows 11", "Диск C", "Почистване на диск", "Stora
 
 **Settings → System → Storage → Storage Sense**
 
+![](windows-11-storage-cleanup-guide.png)
+
 Включете **Storage Sense**.
 
 Тази функция може автоматично да премахва ненужни временни файлове и да почиства кошчето според избраните настройки.
