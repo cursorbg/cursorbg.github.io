@@ -3,23 +3,47 @@
 {{ $lvl := .lvl }}
 
 {{ with .page }}
+{{ $page := . }}
 <li style="display: flow-root;">
 
+    {{ $thumbnail := "" }}
+
+    {{/* First: use the article's cover image */}}
     {{ with .Params.coverImg }}
-        {{ $image := $.page.Resources.GetMatch . }}
-        {{ with $image }}
+        {{ with $page.Resources.GetMatch . }}
             {{ $thumb := .Fill "240x160 webp" }}
-            <a href="{{ $.page.RelPermalink }}">
-                <img
-                    src="{{ $thumb.RelPermalink }}"
-                    alt="{{ $.page.Title }}"
-                    loading="lazy"
-                    style="width: 150px; height: 100px;
-                           object-fit: cover; float: left;
-                           margin: 0 16px 8px 0;
-                           border-radius: 6px;">
-            </a>
+            {{ $thumbnail = $thumb.RelPermalink }}
         {{ end }}
+    {{ end }}
+
+    {{/* Second: use YouTube thumbnail if no cover */}}
+    {{ if not $thumbnail }}
+        {{ $videos := findRESubmatch
+            `\{\{[<%]\s*youtube\s+(?:id=["']?)?([A-Za-z0-9_-]{11})`
+            .RawContent 1 }}
+
+        {{ with $videos }}
+            {{ $videoID := index (index . 0) 1 }}
+            {{ $thumbnail = printf
+                "https://img.youtube.com/vi/%s/hqdefault.jpg"
+                $videoID }}
+        {{ end }}
+    {{ end }}
+
+    {{/* Display thumbnail */}}
+    {{ with $thumbnail }}
+        <a href="{{ $page.RelPermalink }}">
+            <img
+                src="{{ . }}"
+                alt="{{ $page.Title }}"
+                loading="lazy"
+                style="width: 150px;
+                       height: 100px;
+                       object-fit: cover;
+                       float: left;
+                       margin: 0 16px 8px 0;
+                       border-radius: 6px;">
+        </a>
     {{ end }}
 
     <h{{$lvl}}>
