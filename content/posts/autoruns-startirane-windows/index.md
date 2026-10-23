@@ -1,9 +1,9 @@
 +++
 date = '2026-10-22T20:09:39+03:00'
-draft = true
+draft = false
 hidden = false
 title = 'Autoruns от Sysinternals: какво се стартира заедно с Windows'
-tags = ['autorun','autoruns']
+tags = ['autoruns', 'sysinternals', 'windows', 'автоматично стартиране', 'зловреден софтуер', 'сигурност', 'virustotal', 'system restore']
 slug = "autoruns-startirane-windows"
 coverImg = "main.png"
 author = "mos"
