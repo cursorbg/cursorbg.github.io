@@ -1,24 +1,83 @@
+
 {{ $showRecent := .Site.Params.homepage.showRecent | default true }}
 {{ $showRecentLabel := .Site.Params.homepage.showRecentLabel | default "Recent" }}
-{{ $showRecentItems := .Site.Params.homepage.showRecentItems | default 3 }}
-{{ $showReadMore := .Site.Params.homepage.showReadMore | default true }}
-{{ $showMore := .Site.Params.homepage.showMore | default false }}
-{{ $showMoreDest := .Site.Params.homepage.showMoreDest | default "/posts" }}
 
 {{ if $showRecent }}
-<div class="featured" >
+<div class="featured">
+
   <h1>{{ $showRecentLabel }}</h1>
+
+  {{/* Get visible articles */}}
   {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
-  {{ $paginator := .Paginate (where $pages "Params.hidden" "ne" true) }}
+  {{ $pages = where $pages "Params.hidden" "ne" true }}
+
+  {{/* Show exactly 4 articles per page */}}
+  {{ $paginator := .Paginate $pages 4 }}
+
   <ul class="lst-card">
-  {{ range first $showRecentItems $paginator.Pages }}
-    {{ partial "list/card.html" (dict "page" . "lvl" 2) }}
-  {{ end }}
+    {{ range $paginator.Pages }}
+      {{ partial "list/card.html" (dict "page" . "lvl" 2) }}
+    {{ end }}
   </ul>
-  {{ if $showMore }}
-  <div class="showmore">
-    <button onclick="window.location.href = '{{ $showMoreDest }}'" aria-label="Show More"> Покажи още </a>
-  </div>
+
+  {{/* Numbered pagination */}}
+  {{ if gt $paginator.TotalPages 1 }}
+
+  <nav class="pagination"
+       aria-label="Страници"
+       style="display: flex;
+              justify-content: center;
+              align-items: center;
+              flex-wrap: wrap;
+              gap: 8px;
+              margin: 25px 0;">
+
+    {{/* Previous page */}}
+    {{ if $paginator.HasPrev }}
+      <a href="{{ $paginator.Prev.URL }}"
+         style="padding: 8px 12px;">
+        ←
+      </a>
+    {{ end }}
+
+    {{/* Page numbers */}}
+    {{ range $paginator.Pagers }}
+
+      {{ if eq .PageNumber $paginator.PageNumber }}
+
+        <span aria-current="page"
+              style="padding: 8px 14px;
+                     border: 2px solid currentColor;
+                     border-radius: 6px;
+                     font-weight: bold;">
+          {{ .PageNumber }}
+        </span>
+
+      {{ else }}
+
+        <a href="{{ .URL }}"
+           style="padding: 8px 14px;
+                  border: 1px solid currentColor;
+                  border-radius: 6px;
+                  text-decoration: none;">
+          {{ .PageNumber }}
+        </a>
+
+      {{ end }}
+
+    {{ end }}
+
+    {{/* Next page */}}
+    {{ if $paginator.HasNext }}
+      <a href="{{ $paginator.Next.URL }}"
+         style="padding: 8px 12px;">
+        →
+      </a>
+    {{ end }}
+
+  </nav>
+
   {{ end }}
+
 </div>
 {{ end }}
