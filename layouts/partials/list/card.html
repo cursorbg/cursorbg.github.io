@@ -11,7 +11,7 @@
     {{/* First: use the article's cover image */}}
     {{ with .Params.coverImg }}
         {{ with $page.Resources.GetMatch . }}
-            {{ $thumb := .Fill "240x160 webp" }}
+            {{ $thumb := .Fill "240x160 webp Center" }}
             {{ $thumbnail = $thumb.RelPermalink }}
         {{ end }}
     {{ end }}
