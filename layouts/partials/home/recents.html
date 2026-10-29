@@ -11,7 +11,7 @@
   {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
   {{ $pages = where $pages "Params.hidden" "ne" true }}
 
-  {{/* Show exactly 4 articles per page */}}
+  {{/* Show 4 articles per page */}}
   {{ $paginator := .Paginate $pages 4 }}
 
   <ul class="lst-card">
@@ -20,64 +20,8 @@
     {{ end }}
   </ul>
 
-  {{/* Numbered pagination */}}
-  {{ if gt $paginator.TotalPages 1 }}
-
-  <nav class="pagination"
-       aria-label="Страници"
-       style="display: flex;
-              justify-content: center;
-              align-items: center;
-              flex-wrap: wrap;
-              gap: 8px;
-              margin: 25px 0;">
-
-    {{/* Previous page */}}
-    {{ if $paginator.HasPrev }}
-      <a href="{{ $paginator.Prev.URL }}"
-         style="padding: 8px 12px;">
-        ←
-      </a>
-    {{ end }}
-
-    {{/* Page numbers */}}
-    {{ range $paginator.Pagers }}
-
-      {{ if eq .PageNumber $paginator.PageNumber }}
-
-        <span aria-current="page"
-              style="padding: 8px 14px;
-                     border: 2px solid currentColor;
-                     border-radius: 6px;
-                     font-weight: bold;">
-          {{ .PageNumber }}
-        </span>
-
-      {{ else }}
-
-        <a href="{{ .URL }}"
-           style="padding: 8px 14px;
-                  border: 1px solid currentColor;
-                  border-radius: 6px;
-                  text-decoration: none;">
-          {{ .PageNumber }}
-        </a>
-
-      {{ end }}
-
-    {{ end }}
-
-    {{/* Next page */}}
-    {{ if $paginator.HasNext }}
-      <a href="{{ $paginator.Next.URL }}"
-         style="padding: 8px 12px;">
-        →
-      </a>
-    {{ end }}
-
-  </nav>
-
-  {{ end }}
+  {{/* Original Kayal pagination style */}}
+  {{ template "_internal/pagination.html" . }}
 
 </div>
 {{ end }}
