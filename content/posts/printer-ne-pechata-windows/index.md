@@ -62,7 +62,7 @@ coverImg = "main-photo.png"
 
 **Open print queue**
 
-![](snimka1.jpg)
+![](windows-11-epson-printer-settings.png)
 
 Ще видите документите, които чакат да бъдат отпечатани.
 
