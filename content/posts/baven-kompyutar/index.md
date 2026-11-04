@@ -3,7 +3,7 @@ title = "Компютърът работи бавно? Ето как да го �
 slug = "baven-kompyutar"
 date = "2026-11-04T22:00:00.000+02:00"
 author = "4s"
-draft = true
+draft = false
 description = "Компютърът работи бавно или забива? Вижте как да ускорите Windows 10 и 11 чрез проверка на програмите, RAM паметта, диска и системните настройки."
 tags = ["Windows 11", "Windows 10", "Бавен компютър", "Ускоряване на Windows", "Оптимизация", "Task Manager", "Производителност"]
 coverImg = "main-photo.png"
@@ -133,6 +133,8 @@ Windows разполага с вградена защита, така че не 
 **Settings → System → Power & battery**
 
 Намерете **Power mode** и проверете избраната настройка.
+
+![](windows-11-power-mode-settings-dropdown.png)
 
 Ако е налична, можете да опитате **Best performance**, когато лаптопът е включен към зарядното устройство.
 
