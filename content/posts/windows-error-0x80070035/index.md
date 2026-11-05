@@ -57,6 +57,7 @@ coverImg = "main-photo.png"
 * **Network discovery**
 * **File and printer sharing**
 
+
   ![](windows-11-advanced-sharing-settings-2.png)
 
 Ако използвате доверена домашна или служебна мрежа, проверете и дали мрежовият профил е **Private**.
