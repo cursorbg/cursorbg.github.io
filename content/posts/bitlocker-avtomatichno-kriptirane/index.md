@@ -83,7 +83,7 @@ manage-bde -protectors -get C:
 
 В Pro версиите отворете **Control Panel → System and Security → BitLocker Drive Encryption** и изберете **Turn off BitLocker** или **Turn on BitLocker**.
 
-[![](itlocker-05-control-panel.png "{{< icon "link" >}}*фиг. 5*")](itlocker-05-control-panel.png)
+[![](bitlocker-05-control-panel.png "{{< icon "link" >}}*фиг. 5*")](bitlocker-05-control-panel.png)
 
 **През командния ред**
 
