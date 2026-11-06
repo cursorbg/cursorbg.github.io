@@ -1,0 +1,8 @@
+Образци – чужди снимки, НЕ се публикуват. Само за ориентир как да изглеждат собствените снимки.
+
+ref-01-device-encryption.png   https://www.isunshare.com/faqs/bitlocker/how-to-skip-bitlocker-auto-device-encryption.html
+ref-02-manage-bde-status.png   https://www.diskmfr.com/disable-bitlocker-encryption-during-windows-11-installation/
+ref-03-recovery-key-account.png https://pureinfotech.com/find-bitlocker-recovery-key-windows/
+ref-04-protectors.png          https://helpdeskgeek.com/find-back-up-bitlocker-recovery-key-windows/
+ref-05-manage-bitlocker.png    https://www.diskmfr.com/disable-bitlocker-encryption-during-windows-11-installation/
+ref-06-regedit.png             https://www.isunshare.com/faqs/bitlocker/how-to-skip-bitlocker-auto-device-encryption.html

@@ -1,9 +1,9 @@
 +++
 title = "BitLocker: Windows криптира диска ви, без да ви пита"
 slug = "bitlocker-avtomatichno-kriptirane"
-date = "2026-11-05T14:45:00.000+02:00"
+date = "2026-11-06T13:15:00.000+02:00"
 author = "mos"
-draft = true
+draft = false
 description = "Windows 11 може да криптира диска автоматично с BitLocker, без да ви пита. Вижте как да проверите статуса, къде е ключът за възстановяване и как да включите, изключите или забраните криптирането."
 tags = ["BitLocker", "Windows 11", "Криптиране", "Device Encryption", "Ключ за възстановяване", "manage-bde", "Сигурност"]
 coverImg = "main-photo.png"
@@ -32,7 +32,7 @@ BitLocker е вграденото в Windows криптиране на диск�
 
 На Pro версиите може да видите само препратка към **BitLocker drive encryption**.
 
-![](bitlocker-01-device-encryption.png)
+[![](bitlocker-01-device-encryption.png "{{< icon "link" >}}*фиг. 1*")](bitlocker-01-device-encryption.png)
 
 По-точен отговор дава командният ред. Натиснете **Start**, напишете `cmd`, изберете **Run as administrator** и въведете:
 
@@ -40,11 +40,11 @@ BitLocker е вграденото в Windows криптиране на диск�
 manage-bde -status
 ```
 
-![](bitlocker-02-manage-bde-status.png)
+[![](bitlocker-02-manage-bde-status.png "{{< icon "link" >}}*фиг. 2*")](bitlocker-02-manage-bde-status.png)
 
 Гледайте два реда при диск **C:**
 
-- **Conversion Status** – `Fully Encrypted` означава, че дискът е криптиран, а `Fully Decrypted` – че не е.
+- **Conversion Status** – `Fully Encrypted` или `Used Space Only Encrypted` означава, че дискът е криптиран, а `Fully Decrypted` – че не е.
 - **Protection Status** – `Protection On` означава, че защитата е активна.
 
 Ако виждате `Fully Encrypted`, но `Protection Off`, дискът е криптиран, но защитата все още не е активирана. Това е типично за компютри с локален акаунт.
@@ -61,7 +61,7 @@ manage-bde -status
 
 Влезте със същия акаунт, с който влизате в Windows. Ще видите списък с устройствата си и техните ключове.
 
-![](bitlocker-03-recovery-key-account.png)
+[![](bitlocker-03-recovery-key-account.png "{{< icon "link" >}}*фиг. 3*")](bitlocker-03-recovery-key-account.png)
 
 **Ако използвате локален акаунт** или искате да видите ключа директно на компютъра, в командния ред като администратор въведете:
 
@@ -69,7 +69,7 @@ manage-bde -status
 manage-bde -protectors -get C:
 ```
 
-![](bitlocker-04-protectors.png)
+[![](bitlocker-04-protectors.png "{{< icon "link" >}}*фиг. 4*")](bitlocker-04-protectors.png)
 
 Ключът е 48-цифреното число под **Numerical Password → Password**. Препишете го на хартия или го запазете на място **извън компютъра** – например на USB флашка или в мениджър на пароли.
 
@@ -83,7 +83,7 @@ manage-bde -protectors -get C:
 
 В Pro версиите отворете **Control Panel → System and Security → BitLocker Drive Encryption** и изберете **Turn off BitLocker** или **Turn on BitLocker**.
 
-![](bitlocker-05-control-panel.png)
+[![](itlocker-05-control-panel.png "{{< icon "link" >}}*фиг. 5*")](itlocker-05-control-panel.png)
 
 **През командния ред**
 
@@ -117,7 +117,7 @@ reg add HKLM\SYSTEM\CurrentControlSet\Control\BitLocker /v PreventDeviceEncrypti
 2. Създайте **DWORD (32-bit) Value** с име `PreventDeviceEncryption`.
 3. Задайте стойност **1**.
 
-![](bitlocker-06-regedit.png)
+[![](bitlocker-06-regedit.png "{{< icon "link" >}}*фиг. 6*")](bitlocker-06-regedit.png)
 
 Тази настройка **не декриптира** вече криптиран диск. Първо изключете BitLocker от стъпка 3, а след това добавете ключа в регистъра.
 
@@ -131,4 +131,6 @@ reg add HKLM\SYSTEM\CurrentControlSet\Control\BitLocker /v PreventDeviceEncrypti
 
 **За настолен компютър** вкъщи рискът от кражба е по-малък, а рискът да загубите достъп до данните след смяна на хардуер – реален. Тук изключването е разумен избор.
 
+{{< callout >}}
 И в двата случая правилото е едно: **не оставяйте компютъра с криптиран диск и ключ, който не знаете къде е.**
+{{< /callout >}}
