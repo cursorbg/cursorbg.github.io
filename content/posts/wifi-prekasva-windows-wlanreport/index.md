@@ -6,7 +6,7 @@ author = "4s"
 draft = true
 description = "Wi-Fi връзката прекъсва в Windows 10 или 11? С командата netsh wlan show wlanreport проверете историята на свързванията, грешките и причините за прекъсване."
 tags = ["Windows 11", "Windows 10", "Wi-Fi", "Безжична мрежа", "Диагностика", "netsh", "WLAN Report"]
-coverImg = "main-photo.png"
+coverImg = "windows-11-wireless-network-report.png"
 +++
 Wi-Fi връзката прекъсва за няколко секунди и след това се възстановява? Или лаптопът понякога отказва да се свърже с безжичната мрежа, без да показва ясна причина?
 
