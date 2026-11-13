@@ -6,7 +6,7 @@ author = "4s"
 draft = true
 description = "Проверете RAM паметта за грешки в Windows 10 и 11 с командата mdsched.exe. Научете как да стартирате теста и да намерите резултатите в Event Viewer."
 tags = ["Windows 11", "Windows 10", "RAM памет", "Windows Memory Diagnostic", "mdsched", "Диагностика", "Хардуер", "Син екран"]
-coverImg = "windows-memory-diagnostic-results.png"
+coverImg = "main-photo-2-.png"
 +++
 Компютърът забива без видима причина, рестартира се неочаквано или понякога показва син екран? Една от възможните причини е нестабилна или дефектна оперативна памет (RAM).
 
