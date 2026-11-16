@@ -1,9 +1,9 @@
 +++
-title = "Как да проверим видеокартата и DirectX с една команда?"
+title = "DxDiag – какво разкрива за видеокартата, драйверите и DirectX?"
 slug = "proverka-videokarta-dxdiag"
 date = "2026-11-15T18:30:00.000+02:00"
 author = "4s"
-draft = true
+draft = false
 description = "Проверете модела на видеокартата, версията на драйвера и DirectX с командата dxdiag в Windows 10 и 11. Вижте как да запазите диагностичен отчет."
 tags = ["Windows 11", "Windows 10", "dxdiag", "DirectX", "Видеокарта", "Графични драйвери", "Диагностика", "Игри"]
 coverImg = "directx-diagnostic-tool-gaming-thumbnail.png"
