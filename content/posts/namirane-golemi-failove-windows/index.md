@@ -3,10 +3,10 @@ title = "Кои файлове заемат най-много място на д
 slug = "namirane-golemi-failove-windows"
 date = "2026-11-19T17:30:00.000+02:00"
 author = "4s"
-draft = true
+draft = false
 description = "Научете как да откриете най-големите файлове на диска в Windows 10 и 11 чрез File Explorer и филтри по размер, без допълнителен софтуер."
 tags = ["Windows 11", "Windows 10", "File Explorer", "Големи файлове", "Дисково пространство", "Търсене на файлове", "SSD"]
-coverImg = "windows-11-search-results-in-bulgarian.png"
+coverImg = "windows-search-results-with-magnifying-glass.png"
 +++
 Свободното пространство на диска понякога намалява с десетки гигабайти, без да е ясно къде са отишли. Причината може да бъде стар архив, голям видеофайл или забравена инсталация.
 
